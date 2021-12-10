@@ -11,7 +11,12 @@ int main() {
         return 1;
     }
 
-    printf("Size: %d", clients_arr->size);
+    h_clients_add(clients_arr);
+    h_clients_remove(clients_arr, 132);
+
+    h_clients_list(clients_arr);
+
+    h_clients_free(clients_arr);
 
     return 0;
 }
