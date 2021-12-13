@@ -3,4 +3,4 @@ project(ProjetoFinal C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(ProjetoFinal main.c clients.c clients.h)
+add_executable(ProjetoFinal main.c clients.c clients.h utils.c utils.h articles.c articles.h)

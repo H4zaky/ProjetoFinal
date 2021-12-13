@@ -9,7 +9,7 @@
 typedef struct {
     int code;
     char *name;
-    char *nif;
+    int nif;
     char *country;
     int removed;
 } t_client;
@@ -21,8 +21,8 @@ typedef struct {
 } t_arr_clients;
 
 /**
- * Alloc memory for an array of clients
- * @return the array of clients
+ * Alloc memory for an array of clients.
+ * @return the array of clients.
  */
 t_arr_clients *h_clients_alloc();
 
@@ -53,4 +53,9 @@ int h_clients_update(t_arr_clients *clients_arr, int code);
  */
 void h_clients_list(t_arr_clients *clients_arr);
 
+void cleanInputBuffer();
+
+char obterChar(char *msg);
+
+void lerString(char *string, unsigned int tamanho, char *msg);
 #endif //PROJETOFINAL_CLIENTS_H

@@ -4,7 +4,7 @@
 
 int main() {
 
-    t_arr_clients* clients_arr = NULL;
+    t_arr_clients *clients_arr = NULL;
 
     clients_arr = h_clients_alloc();
     if (clients_arr == NULL) {
@@ -12,7 +12,10 @@ int main() {
     }
 
     h_clients_add(clients_arr);
-    h_clients_remove(clients_arr, 132);
+
+    h_clients_list(clients_arr);
+
+    h_clients_update(clients_arr, 123);
 
     h_clients_list(clients_arr);
 
