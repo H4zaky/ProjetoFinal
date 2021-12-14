@@ -12,12 +12,13 @@ int main() {
     }
 
     h_clients_add(clients_arr);
+    h_clients_add(clients_arr);
 
     h_clients_list(clients_arr);
 
-    h_clients_update(clients_arr, 123);
+    //h_clients_update(clients_arr, 123);
 
-    h_clients_list(clients_arr);
+    //h_clients_list(clients_arr);
 
     h_clients_free(clients_arr);
 

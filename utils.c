@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "utils.h"
+#include "clients.h"
 
 #define VALOR_INVALIDO "O valor inserido é inválido."
 

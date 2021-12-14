@@ -15,6 +15,10 @@ void read_client(t_client *client) {
     h_utils_read_string(client->country, 3, COUNTRY_INPUT);
 }
 
+int expand_array_clients(t_arr_clients *clients_arr) {
+    return 0;
+}
+
 t_arr_clients *h_clients_alloc() {
 
     t_arr_clients *clients_arr = (t_arr_clients *) malloc(sizeof(t_arr_clients));
@@ -23,10 +27,9 @@ t_arr_clients *h_clients_alloc() {
     }
 
     clients_arr->count = 0;
-    clients_arr->size = 20;
+    clients_arr->size = 1;
 
-    // Inicializa 20 estruturas do tipo t_client a 0
-    clients_arr->clients = (t_client *) calloc(20, sizeof(t_client));
+    clients_arr->clients = (t_client *) calloc(clients_arr->size, sizeof(t_client));
     if (clients_arr->clients == NULL) {
         return NULL;
     }
@@ -53,6 +56,10 @@ int h_clients_add(t_arr_clients *clients_arr) {
 
     if (clients_arr == NULL) {
         return 0;
+    }
+
+    if (clients_arr->count == clients_arr->size) {
+        expand_array_clients(clients_arr);
     }
 
     read_client(&clients_arr->clients[clients_arr->count]);

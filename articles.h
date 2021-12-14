@@ -8,6 +8,8 @@ enum FOOTWEAR_TYPE {
 };
 
 typedef struct {
+    int code;
+    int name;
     int laborWork;
     int fixedCosts;
     int footWearSize;
@@ -38,4 +40,6 @@ int h_articles_add(t_arr_articles *articles_arr);
 /**
  * Finds a article by its's code and */
 int h_articles_remove(t_arr_articles *articles_arr);
+
+
 #endif //PROJETOFINAL_ARTICLES_H
