@@ -164,6 +164,7 @@ void h_clients_list(t_arr_clients *clients_arr) {
         printf("País do cliente: %s\n", clients_arr->clients[i].country);
         printf("Removido: %d", clients_arr->clients[i].removed);
         printf("\n----\n");
+        printf("teste";)
     }
 }
 

@@ -1,6 +1,11 @@
 #ifndef PROJETOFINAL_ARTICLES_H
 #define PROJETOFINAL_ARTICLES_H
 
+#define CODE_INPUT "Código do Artigo:"
+#define NAME_INPUT "Nome do Artigo:"
+
+#define CODE_EXISTS "O número inserido para o código já existe!"
+
 enum FOOTWEAR_TYPE {
     SAPATO,
     SANDALIAS,
@@ -9,9 +14,9 @@ enum FOOTWEAR_TYPE {
 
 typedef struct {
     int code;
-    int name;
-    //int laborWork; consts?
-    //int fixedCosts; consts?
+    char *name;
+    int laborWork;
+    int fixedCosts;
     int footWearSize;
     int footWearCosts;
     enum FOOTWEAR_TYPE type;
@@ -45,13 +50,11 @@ int h_articles_add(t_arr_articles *articles_arr);
 int h_articles_remove(t_arr_articles *articles_arr, int code);
 
 /**
- *Fids and updates articles data.
+ * Finds and updates articles data.
  * @param code the code of the article.
  * @return 1 if found and successful updated, 0 otherwise.
  */
-int h_articles_update(t_arr_articles *articles_arr, int code) {
-
-}
+int h_articles_update(t_arr_articles *articles_arr, int code);
 
 /**
  * Iterates the array of articles.
