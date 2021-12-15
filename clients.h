@@ -6,6 +6,9 @@
 #define NIF_INPUT "Nif do Cliente:"
 #define COUNTRY_INPUT "País do Cliente:"
 
+#define NIF_EXISTS "O número inserido para o nif já existe!"
+#define CODE_EXISTS "O número inserido para o código já existe!"
+
 typedef struct {
     int code;
     char *name;

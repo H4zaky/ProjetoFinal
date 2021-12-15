@@ -1,22 +1,85 @@
-#include <malloc.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "clients.h"
 #include "utils.h"
 
-void read_client(t_client *client) {
-    client->code = h_utils_read_int(0, 9999, CODE_INPUT);
+int find_code(t_arr_clients *clients_arr, int code);
 
-    h_utils_read_string(client->name, 64, NAME_INPUT);
+int find_nif(t_arr_clients *clients_arr, int nif);
 
-    client->nif = h_utils_read_int(99999999, 999999999, NIF_INPUT);
+int read_client(t_arr_clients *client_arr, int i) {
+    int code, nif;
 
-    h_utils_read_string(client->country, 3, COUNTRY_INPUT);
+    // reuse memory
+    char *name = client_arr->clients[i].name;
+    char *country =  client_arr->clients[i].country;
+
+    code = h_utils_read_int(0, 9999, CODE_INPUT);
+    if (find_code(client_arr, code)) {
+        printf(CODE_EXISTS);
+        return 0;
+    }
+
+    h_utils_read_string(name, 64, NAME_INPUT);
+
+    nif = h_utils_read_int(99999999, 999999999, NIF_INPUT);
+    if (find_nif(client_arr, nif)) {
+        printf(NIF_EXISTS);
+        return 0;
+    }
+
+    h_utils_read_string(country, 3, COUNTRY_INPUT);
+
+    client_arr->clients[i].code = code;
+    client_arr->clients[i].name = name;
+    client_arr->clients[i].nif = nif;
+    client_arr->clients[i].country = country;
+
+    return 1;
 }
 
-int expand_array_clients(t_arr_clients *clients_arr) {
+//Linear search
+int find_code(t_arr_clients *clients_arr, int code) {
+    for (int i = 0; i < clients_arr->count; i++) {
+        if (clients_arr->clients[i].code == code) {
+            return 1;
+        }
+    }
     return 0;
+}
+
+//Linear search
+int find_nif(t_arr_clients *clients_arr, int nif) {
+    for (int i = 0; i < clients_arr->count; i++) {
+        if (clients_arr->clients[i].nif == nif) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void expand_array(t_arr_clients *clients_arr) {
+    int new_size;
+
+    new_size = clients_arr->size * 2;
+
+    clients_arr->clients = (t_client *) realloc(clients_arr->clients, new_size * sizeof(t_client));
+    if (clients_arr->clients == NULL) {
+        printf("Não alocou!");
+        exit(1);
+    }
+
+    clients_arr->size = new_size;
+
+    for (int i = clients_arr->count; i < new_size; i++) {
+        clients_arr->clients[i].name = (char *) calloc(64, sizeof(char));
+        clients_arr->clients[i].country = (char *) calloc(3, sizeof(char));
+        clients_arr->clients[i].removed = 0;
+        clients_arr->clients[i].code = 0;
+        clients_arr->clients[i].nif = 0;
+    }
 }
 
 t_arr_clients *h_clients_alloc() {
@@ -59,15 +122,12 @@ int h_clients_add(t_arr_clients *clients_arr) {
     }
 
     if (clients_arr->count == clients_arr->size) {
-        clients_arr->size = clients_arr->size * 2;
-        clients_arr->clients = realloc(clients_arr->clients, sizeof(t_client) * (clients_arr->size));
-        for (int i = clients_arr->count; i < clients_arr->size; i++) {
-            clients_arr->clients[i].name = (char *) calloc(64, sizeof(char));
-            clients_arr->clients[i].country = (char *) calloc(64, sizeof(char));
-        }
+        expand_array(clients_arr);
     }
 
-    read_client(&clients_arr->clients[clients_arr->count]);
+    if (read_client(clients_arr, clients_arr->count) != 1) {
+        return 0;
+    }
 
     clients_arr->count++;
 
@@ -88,10 +148,7 @@ int h_clients_remove(t_arr_clients *clients_arr, int code) {
 int h_clients_update(t_arr_clients *clients_arr, int code) {
     for (int i = 0; i < clients_arr->count; ++i) {
         if (clients_arr->clients[i].code == code) {
-
-            read_client(&clients_arr->clients[i]);
-
-            return 1;
+            return read_client(clients_arr, i);
         }
     }
 
