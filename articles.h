@@ -10,15 +10,15 @@ enum FOOTWEAR_TYPE {
 typedef struct {
     int code;
     int name;
-    int laborWork;
-    int fixedCosts;
+    //int laborWork; consts?
+    //int fixedCosts; consts?
     int footWearSize;
     int footWearCosts;
     enum FOOTWEAR_TYPE type;
 } t_article;
 
 typedef struct {
-    t_article *clients;
+    t_article *articles;
     int count; // Representa o espaço total ocupado e a posição livre
     int size; // Tamanho total do array
 } t_arr_articles;
@@ -38,8 +38,30 @@ void h_articles_free(t_arr_articles *articles_arr);
 int h_articles_add(t_arr_articles *articles_arr);
 
 /**
- * Finds a article by its's code and */
-int h_articles_remove(t_arr_articles *articles_arr);
+ * Finds a article by its's code and remove it.
+ * @param code the code of the article.
+ * @return 1 if found and remove, 0 otherwise.
+ */
+int h_articles_remove(t_arr_articles *articles_arr, int code);
 
+/**
+ *Fids and updates articles data.
+ * @param code the code of the article.
+ * @return 1 if found and successful updated, 0 otherwise.
+ */
+int h_articles_update(t_arr_articles *articles_arr, int code) {
+
+}
+
+/**
+ * Iterates the array of articles.
+ */
+void h_clients_list(t_arr_articles *articles_arr);
+
+void cleanInputBuffer();
+
+char obterChar(char *msg);
+
+void lerString(char *string, unsigned int tamanho, char *msg);
 
 #endif //PROJETOFINAL_ARTICLES_H

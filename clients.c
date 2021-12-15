@@ -59,7 +59,12 @@ int h_clients_add(t_arr_clients *clients_arr) {
     }
 
     if (clients_arr->count == clients_arr->size) {
-        expand_array_clients(clients_arr);
+        clients_arr->size = clients_arr->size * 2;
+        clients_arr->clients = realloc(clients_arr->clients, sizeof(t_client) * (clients_arr->size));
+        for (int i = clients_arr->count; i < clients_arr->size; i++) {
+            clients_arr->clients[i].name = (char *) calloc(64, sizeof(char));
+            clients_arr->clients[i].country = (char *) calloc(64, sizeof(char));
+        }
     }
 
     read_client(&clients_arr->clients[clients_arr->count]);
