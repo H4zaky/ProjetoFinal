@@ -56,15 +56,5 @@ int h_articles_remove(t_arr_articles *articles_arr, int code);
  */
 int h_articles_update(t_arr_articles *articles_arr, int code);
 
-/**
- * Iterates the array of articles.
- */
-void h_clients_list(t_arr_articles *articles_arr);
-
-void cleanInputBuffer();
-
-char obterChar(char *msg);
-
-void lerString(char *string, unsigned int tamanho, char *msg);
 
 #endif //PROJETOFINAL_ARTICLES_H

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "articles.h"
 #include "clients.h"
 
 int main() {
@@ -11,12 +11,16 @@ int main() {
         return 1;
     }
 
-    h_clients_add(clients_arr);
-    h_clients_add(clients_arr);
+    t_arr_articles *articles_arr = NULL;
 
-    h_clients_list(clients_arr);
+    articles_arr = h_articles_alloc();
+    if (articles_arr == NULL) {
+        return 1;
+    }
 
-    h_clients_free(clients_arr);
+    h_articles_add(articles_arr);
+
+    h_articles_remove(articles_arr, 123);
 
     return 0;
 }

@@ -5,7 +5,7 @@
 #include "clients.h"
 #include "utils.h"
 
-int find_code(t_arr_clients *clients_arr, int code);
+int find_client_code(t_arr_clients *clients_arr, int code);
 
 int find_nif(t_arr_clients *clients_arr, int nif);
 
@@ -14,10 +14,10 @@ int read_client(t_arr_clients *client_arr, int i) {
 
     // reuse memory
     char *name = client_arr->clients[i].name;
-    char *country =  client_arr->clients[i].country;
+    char *country = client_arr->clients[i].country;
 
     code = h_utils_read_int(0, 9999, CODE_INPUT);
-    if (find_code(client_arr, code)) {
+    if (find_client_code(client_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
@@ -41,7 +41,7 @@ int read_client(t_arr_clients *client_arr, int i) {
 }
 
 //Linear search
-int find_code(t_arr_clients *clients_arr, int code) {
+int find_client_code(t_arr_clients *clients_arr, int code) {
     for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].code == code) {
             return 1;
@@ -60,7 +60,7 @@ int find_nif(t_arr_clients *clients_arr, int nif) {
     return 0;
 }
 
-void expand_array(t_arr_clients *clients_arr) {
+void expand_clients_array(t_arr_clients *clients_arr) {
     int new_size;
 
     new_size = clients_arr->size * 2;
@@ -73,7 +73,7 @@ void expand_array(t_arr_clients *clients_arr) {
 
     clients_arr->size = new_size;
 
-    for (int i = clients_arr->count; i < new_size; i++) {
+    for (int i = clients_arr->count; i < clients_arr->size; i++) {
         clients_arr->clients[i].name = (char *) calloc(64, sizeof(char));
         clients_arr->clients[i].country = (char *) calloc(3, sizeof(char));
         clients_arr->clients[i].removed = 0;
@@ -122,7 +122,7 @@ int h_clients_add(t_arr_clients *clients_arr) {
     }
 
     if (clients_arr->count == clients_arr->size) {
-        expand_array(clients_arr);
+        expand_clients_array(clients_arr);
     }
 
     if (read_client(clients_arr, clients_arr->count) != 1) {
@@ -164,7 +164,6 @@ void h_clients_list(t_arr_clients *clients_arr) {
         printf("País do cliente: %s\n", clients_arr->clients[i].country);
         printf("Removido: %d", clients_arr->clients[i].removed);
         printf("\n----\n");
-        printf("teste";)
     }
 }
 

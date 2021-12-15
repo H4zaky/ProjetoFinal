@@ -1,4 +1,3 @@
-#include <malloc.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -6,16 +5,16 @@
 #include "articles.h"
 #include "utils.h"
 
-int find_code(t_arr_articles *articles_arr, int code);
+int find_article_code(t_arr_articles *articles_arr, int code);
 
-int read_client(t_arr_articles *articles_arr, int i) {
+int read_article(t_arr_articles *articles_arr, int i) {
     int code;
 
     // reuse memory
     char *name = articles_arr->articles[i].name;
 
     code = h_utils_read_int(0, 9999, CODE_INPUT);
-    if (find_code(articles_arr, code)) {
+    if (find_article_code(articles_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
@@ -28,7 +27,7 @@ int read_client(t_arr_articles *articles_arr, int i) {
     return 1;
 }
 
-int find_code(t_arr_articles *articles_arr, int code) {
+int find_article_code(t_arr_articles *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
             return 1;
@@ -37,7 +36,7 @@ int find_code(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-void expand_array(t_arr_articles *articles_arr) {
+void expand_articles_array(t_arr_articles *articles_arr) {
     int new_size;
 
     new_size = articles_arr->size * 2;
@@ -96,10 +95,10 @@ int h_articles_add(t_arr_articles *articles_arr) {
     }
 
     if (articles_arr->count == articles_arr->size) {
-        expand_array(articles_arr);
+        expand_articles_array(articles_arr);
     }
 
-    if (read_client(articles_arr, articles_arr->count) != 1) {
+    if (read_article(articles_arr, articles_arr->count) != 1) {
         return 0;
     }
 
@@ -109,19 +108,37 @@ int h_articles_add(t_arr_articles *articles_arr) {
 }
 
 int h_articles_remove(t_arr_articles *articles_arr, int code) {
-    for (int i = 0; i < articles_arr->count; ++i) {
+    int position = -1;
+    for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
-            return 1;
+            position = i;
         }
     }
 
+    if (position == -1) {
+        return 1;
+    }
+
+    for (int i = position; i < articles_arr->count - 1; i++) {
+        articles_arr->articles[i] = articles_arr->articles[i + 1];
+    }
+
+    free(articles_arr->articles[articles_arr->count].name);
+    articles_arr->articles[articles_arr->count].code = 0;
+    articles_arr->articles[articles_arr->count].fixedCosts = 0;
+    articles_arr->articles[articles_arr->count].footWearCosts = 0;
+    articles_arr->articles[articles_arr->count].laborWork = 0;
+    articles_arr->articles[articles_arr->count].type = 0;
+    articles_arr->articles[articles_arr->count].footWearSize = 0;
+
+    articles_arr->count--;
     return 0;
 }
 
 int h_articles_update(t_arr_articles *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; ++i) {
         if (articles_arr->articles[i].code == code) {
-            return read_client(articles_arr, i);
+            return read_article(articles_arr, i);
         }
     }
 
