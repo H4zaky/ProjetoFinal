@@ -16,21 +16,21 @@ int read_client(t_arr_clients *client_arr, int i) {
     char *name = client_arr->clients[i].name;
     char *country = client_arr->clients[i].country;
 
-    code = h_utils_read_int(0, 9999, CODE_INPUT);
+    code = h_utils_read_int(0, 9999, CODE_INPUT_CLIENT);
     if (find_client_code(client_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
 
-    h_utils_read_string(name, 64, NAME_INPUT);
+    h_utils_read_string(name, 64, NAME_INPUT_CLIENT);
 
-    nif = h_utils_read_int(99999999, 999999999, NIF_INPUT);
+    nif = h_utils_read_int(99999999, 999999999, NIF_INPUT_CLIENT);
     if (find_nif(client_arr, nif)) {
         printf(NIF_EXISTS);
         return 0;
     }
 
-    h_utils_read_string(country, 3, COUNTRY_INPUT);
+    h_utils_read_string(country, 3, COUNTRY_INPUT_CLIENT);
 
     client_arr->clients[i].code = code;
     client_arr->clients[i].name = name;
@@ -146,7 +146,7 @@ int h_clients_remove(t_arr_clients *clients_arr, int code) {
 }
 
 int h_clients_update(t_arr_clients *clients_arr, int code) {
-    for (int i = 0; i < clients_arr->count; ++i) {
+    for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].code == code) {
             return read_client(clients_arr, i);
         }

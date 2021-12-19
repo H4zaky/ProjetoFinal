@@ -1,10 +1,10 @@
 #ifndef PROJETOFINAL_CLIENTS_H
 #define PROJETOFINAL_CLIENTS_H
 
-#define CODE_INPUT "Código do Cliente:"
-#define NAME_INPUT "Nome do Cliente:"
-#define NIF_INPUT "Nif do Cliente:"
-#define COUNTRY_INPUT "País do Cliente:"
+#define CODE_INPUT_CLIENT "Código do Cliente:"
+#define NAME_INPUT_CLIENT "Nome do Cliente:"
+#define NIF_INPUT_CLIENT "Nif do Cliente:"
+#define COUNTRY_INPUT_CLIENT "País do Cliente:"
 
 #define NIF_EXISTS "O número inserido para o nif já existe!"
 #define CODE_EXISTS "O número inserido para o código já existe!"

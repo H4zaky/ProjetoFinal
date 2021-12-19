@@ -1,8 +1,13 @@
 #ifndef PROJETOFINAL_ARTICLES_H
 #define PROJETOFINAL_ARTICLES_H
 
-#define CODE_INPUT "Código do Artigo:"
-#define NAME_INPUT "Nome do Artigo:"
+#define CODE_INPUT_ARTICLE "Código do Artigo:"
+#define NAME_INPUT_ARTICLE "Nome do Artigo:"
+#define FOOTWEAR_SIZE_INPUT "Tamanho do sapato (34~48):"
+#define FOOTWEAR_COSTS_INPUT "Preço do sapato (0.65~1.35):"
+#define LABOR_WORK_INPUT "Custo da mão de obra (0~10):"
+#define FIXED_COSTS_INPUT "Custo fixo do sapato (0~10):"
+#define REMOVE_INPUT "O artigo foi removido!"
 
 #define CODE_EXISTS "O número inserido para o código já existe!"
 
@@ -18,7 +23,7 @@ typedef struct {
     int laborWork;
     int fixedCosts;
     int footWearSize;
-    int footWearCosts;
+    float footWearCosts;
     enum FOOTWEAR_TYPE type;
 } t_article;
 
@@ -56,5 +61,7 @@ int h_articles_remove(t_arr_articles *articles_arr, int code);
  */
 int h_articles_update(t_arr_articles *articles_arr, int code);
 
+void h_articles_list(t_arr_articles *articles_arr);
 
 #endif //PROJETOFINAL_ARTICLES_H
+
