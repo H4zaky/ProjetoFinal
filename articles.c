@@ -162,11 +162,11 @@ void h_articles_list(t_arr_articles *articles_arr) {
         printf("\n----\n");
         printf("Código de Artigo: %d\n", articles_arr->articles[i].code);
         printf("Nome do Artigo: %s\n", articles_arr->articles[i].name);
-        printf("Custo fixo: %d\n", articles_arr->articles[i].fixedCosts);
+        printf("Custo Fixo: %d\n", articles_arr->articles[i].fixedCosts);
         printf("Custo de Mão de Obra: %d\n", articles_arr->articles[i].laborWork);
-        printf("Preço do sapato: %0.2f\n", articles_arr->articles[i].footWearCosts);
+        printf("Preço do Sapato: %0.2f\n", articles_arr->articles[i].footWearCosts);
         printf("Tamanho do Sapato: %d\n", articles_arr->articles[i].footWearSize);
-        printf("Tipo de calçado: %c\n", articles_arr->articles[i].type);
+        printf("Tipo do Sapato: %c\n", articles_arr->articles[i].type);
         printf("\n----\n");
     }
 }
