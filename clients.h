@@ -29,6 +29,8 @@ typedef struct {
  */
 t_arr_clients *h_clients_alloc();
 
+void h_client_print(const t_client *client);
+
 void h_clients_free(t_arr_clients *clients_arr);
 
 /**
@@ -61,4 +63,5 @@ void cleanInputBuffer();
 char obterChar(char *msg);
 
 void lerString(char *string, unsigned int tamanho, char *msg);
+
 #endif //PROJETOFINAL_CLIENTS_H

@@ -157,14 +157,18 @@ int h_clients_update(t_arr_clients *clients_arr, int code) {
 
 void h_clients_list(t_arr_clients *clients_arr) {
     for (int i = 0; i < clients_arr->count; ++i) {
-        printf("\n----\n");
-        printf("Código de cliente: %d\n", clients_arr->clients[i].code);
-        printf("Nome do Cliente: %s\n", clients_arr->clients[i].name);
-        printf("Nif do cliente: %d\n", clients_arr->clients[i].nif);
-        printf("País do cliente: %s\n", clients_arr->clients[i].country);
-        printf("Removido: %d", clients_arr->clients[i].removed);
-        printf("\n----\n");
+        h_client_print(&clients_arr->clients[i]);
     }
+}
+
+void h_client_print(const t_client * client) {
+    printf("\n----\n");
+    printf("Código de cliente: %d\n", client->code);
+    printf("Nome do Cliente: %s\n", client->name);
+    printf("Nif do cliente: %d\n", client->nif);
+    printf("País do cliente: %s\n", client->country);
+    printf("Removido: %d", client->removed);
+    printf("\n----\n");
 }
 
 

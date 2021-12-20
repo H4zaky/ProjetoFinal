@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "articles.h"
 #include "clients.h"
 #include "utils.h"
@@ -10,12 +12,23 @@ int main() {
     t_arr_clients *clients_arr = NULL;
     t_arr_articles *articles_arr = NULL;
 
-    clients_arr = h_clients_alloc();
-    if (clients_arr == NULL) {
+    /*
+    articles_arr = h_articles_file_read("/home/hazaky/importar.csv", ";");
+    if (articles_arr == NULL) {
+        perror("Articles Exited");
         return 1;
-    }
+    }*/
+
     articles_arr = h_articles_alloc();
     if (articles_arr == NULL) {
+        free(articles_arr);
+        perror("Articles Exit");
+        return 1;
+    }
+    clients_arr = h_clients_alloc();
+    if (clients_arr == NULL) {
+        free(articles_arr);
+        perror("Clients Exited");
         return 1;
     }
 
