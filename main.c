@@ -125,6 +125,8 @@ void client_menu() {
 
         op = h_utils_read_int(0, 4, INSERT_OPTION_INPUT);
 
+        // TODO Adicionar opção para listar artigos
+
         switch (op) {
             case 1:
                 printf("fff");
