@@ -2,28 +2,28 @@
 #define PROJETOFINAL_ARTICLES_H
 
 #define CODE_INPUT_ARTICLE "Código do Artigo:"
-#define NAME_INPUT_ARTICLE "Nome do Artigo:"
-#define FOOTWEAR_SIZE_INPUT "Tamanho do sapato (34~48):"
-#define FOOTWEAR_COSTS_INPUT "Preço do sapato (0.65~1.35):"
-#define LABOR_WORK_INPUT "Custo da mão de obra (0~10):"
-#define FIXED_COSTS_INPUT "Custo fixo do sapato (0~10):"
-#define REMOVE_INPUT "O artigo foi removido!"
+
+#define INSERT_ARTICLE_CODE_INPUT "Insira o código do artigo:"
+#define INSERT_ARTICLE_NAME_INPUT "Insira um nome para o artigo:"
+#define INSERT_ARTICLE_MAX_SIZE_INPUT "Insira o tamanho máximo:"
+#define INSERT_ARTICLE_MIN_SIZE_INPUT "Insira o tamanho mínimo:"
+#define INSERT_ARTICLE_TYPE_INPUT "Tipo de Sapato:"
+
+#define REMOVE_ARTICLE_INPUT "O artigo foi removido!"
 
 #define CODE_EXISTS "O número inserido para o código já existe!"
 
 enum FOOTWEAR_TYPE {
-    SAPATO,
-    SANDALIAS,
-    BOTAS
+    SAPATO = 0,
+    SANDALIAS = 1,
+    BOTAS = 2
 };
 
 typedef struct {
     int code;
     char *name;
-    int laborWork;
-    int fixedCosts;
-    int footWearSize;
-    float footWearCosts;
+    int max_size;
+    int min_size;
     enum FOOTWEAR_TYPE type;
 } t_article;
 
@@ -32,6 +32,12 @@ typedef struct {
     int count; // Representa o espaço total ocupado e a posição livre
     int size; // Tamanho total do array
 } t_arr_articles;
+
+/**
+ *
+ * @param article
+ */
+void h_article_print(const t_article *article);
 
 /**
  * Alloc memory for an array of articles.
@@ -48,7 +54,7 @@ void h_articles_free(t_arr_articles *articles_arr);
 int h_articles_add(t_arr_articles *articles_arr);
 
 /**
- * Finds a article by its's code and remove it.
+ * Finds a article by it's code and remove it.
  * @param code the code of the article.
  * @return 1 if found and remove, 0 otherwise.
  */

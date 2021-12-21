@@ -1,13 +1,16 @@
 #ifndef PROJETOFINAL_CLIENTS_H
 #define PROJETOFINAL_CLIENTS_H
 
-#define CODE_INPUT_CLIENT "Código do Cliente:"
-#define NAME_INPUT_CLIENT "Nome do Cliente:"
-#define NIF_INPUT_CLIENT "Nif do Cliente:"
-#define COUNTRY_INPUT_CLIENT "País do Cliente:"
+//Mensagens utilizadas para pedir a informação ao cliente.
+#define INSERT_CLIENT_CODE_INPUT "Insira o código do cliente:"
+#define INSERT_CLIENT_NAME_INPUT "Insira o nome do cliente:"
+#define INSERT_CLIENT_NIF_INPUT "Insira o nif do cliente:"
+#define INSERT_CLIENT_COUNTRY_INPUT "Insira o país do cliente:"
 
+//Mensagem de erro quando existe o mesmo número repetido.
 #define NIF_EXISTS "O número inserido para o nif já existe!"
 #define CODE_EXISTS "O número inserido para o código já existe!"
+
 
 typedef struct {
     int code;
@@ -57,11 +60,5 @@ int h_clients_update(t_arr_clients *clients_arr, int code);
  * Iterates the array of clients
  */
 void h_clients_list(t_arr_clients *clients_arr);
-
-void cleanInputBuffer();
-
-char obterChar(char *msg);
-
-void lerString(char *string, unsigned int tamanho, char *msg);
 
 #endif //PROJETOFINAL_CLIENTS_H

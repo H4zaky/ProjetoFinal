@@ -1,13 +1,14 @@
-//
-// Created by Carlo on 13/12/2021.
-//
-
 #ifndef PROJETOFINAL_UTILS_H
 #define PROJETOFINAL_UTILS_H
 
+//Mensagem utilizada para informar sobre o valor inválido.
 #define VALOR_INVALIDO "O valor inserido é inválido."
+
+//Mensagem utilizada para pedir a opção dentro dos menus.
 #define INSERT_OPTION_INPUT "Insira a opção que deseja:"
-#define INSERT_CODE_INPUT "Insira o código do cliente:"
+
+//Mensagem utilizada para pedir o tipo de utilizador.
+#define INSERT_PROFILE_INPUT "Insira o tipo de utilizador:"
 
 char h_utils_read_char(char *msg);
 

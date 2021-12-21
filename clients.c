@@ -16,21 +16,21 @@ int read_client(t_arr_clients *client_arr, int i) {
     char *name = client_arr->clients[i].name;
     char *country = client_arr->clients[i].country;
 
-    code = h_utils_read_int(0, 9999, CODE_INPUT_CLIENT);
+    code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
     if (find_client_code(client_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
 
-    h_utils_read_string(name, 64, NAME_INPUT_CLIENT);
+    h_utils_read_string(name, 64, INSERT_CLIENT_NAME_INPUT);
 
-    nif = h_utils_read_int(99999999, 999999999, NIF_INPUT_CLIENT);
+    nif = h_utils_read_int(99999999, 999999999, INSERT_CLIENT_NIF_INPUT);
     if (find_nif(client_arr, nif)) {
         printf(NIF_EXISTS);
         return 0;
     }
 
-    h_utils_read_string(country, 3, COUNTRY_INPUT_CLIENT);
+    h_utils_read_string(country, 3, INSERT_CLIENT_COUNTRY_INPUT);
 
     client_arr->clients[i].code = code;
     client_arr->clients[i].name = name;
