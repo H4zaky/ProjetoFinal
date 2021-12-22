@@ -10,8 +10,8 @@ int find_article_code(t_arr_articles *articles_arr, int code);
 int read_article(t_arr_articles *articles_arr, int i) {
     int code;
     int type;
-    int max_size = 0;
-    int min_size = 0;
+    int max_size;
+    int min_size;
 
     //reuse memory
     char *name = articles_arr->articles[i].name;

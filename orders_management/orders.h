@@ -1,11 +1,10 @@
-//
-// Created by Carlo on 21/12/2021.
-//
-
 #ifndef PROJETOFINAL_ORDERS_H
 #define PROJETOFINAL_ORDERS_H
 
 #include <bits/types/time_t.h>
+#include "../utils.h"
+
+#define CODE_INPUT_ORDER "Código da encomenda:"
 
 typedef struct {
     char *expedition_address;
@@ -22,6 +21,8 @@ typedef struct {
 } t_orders_arr;
 
 t_orders_arr *h_orders_alloc();
+
+void h_orders_free(t_orders_arr *orders_arr);
 
 int h_orders_update(int order_code);
 

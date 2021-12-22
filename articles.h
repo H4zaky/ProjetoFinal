@@ -11,7 +11,6 @@
 
 #define REMOVE_ARTICLE_INPUT "O artigo foi removido!"
 
-#define CODE_EXISTS "O número inserido para o código já existe!"
 
 enum FOOTWEAR_TYPE {
     SAPATO = 0,

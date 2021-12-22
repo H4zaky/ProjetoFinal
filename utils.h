@@ -3,6 +3,7 @@
 
 //Mensagem utilizada para informar sobre o valor inválido.
 #define VALOR_INVALIDO "O valor inserido é inválido."
+#define CODE_EXISTS "O número inserido para o código já existe!"
 
 //Mensagem utilizada para pedir a opção dentro dos menus.
 #define INSERT_OPTION_INPUT "Insira a opção que deseja:"
