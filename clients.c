@@ -5,11 +5,11 @@
 #include "clients.h"
 #include "utils.h"
 
-int find_client_code(t_arr_clients *clients_arr, int code);
+int find_nif(t_clients_arr *clients_arr, int nif);
 
-int find_nif(t_arr_clients *clients_arr, int nif);
+int is_empty(const t_clients_arr *clients_arr);
 
-int read_client(t_arr_clients *client_arr, int i) {
+int read_client(t_clients_arr *client_arr, int i) {
     int code, nif;
 
     // reuse memory
@@ -17,7 +17,7 @@ int read_client(t_arr_clients *client_arr, int i) {
     char *country = client_arr->clients[i].country;
 
     code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
-    if (find_client_code(client_arr, code)) {
+    if (h_clients_find_by_code(client_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
@@ -41,7 +41,7 @@ int read_client(t_arr_clients *client_arr, int i) {
 }
 
 //Linear search
-int find_client_code(t_arr_clients *clients_arr, int code) {
+int h_clients_find_by_code(t_clients_arr *clients_arr, int code) {
     for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].code == code) {
             return 1;
@@ -51,7 +51,7 @@ int find_client_code(t_arr_clients *clients_arr, int code) {
 }
 
 //Linear search
-int find_nif(t_arr_clients *clients_arr, int nif) {
+int find_nif(t_clients_arr *clients_arr, int nif) {
     for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].nif == nif) {
             return 1;
@@ -60,7 +60,7 @@ int find_nif(t_arr_clients *clients_arr, int nif) {
     return 0;
 }
 
-void expand_clients_array(t_arr_clients *clients_arr) {
+void expand_clients_array(t_clients_arr *clients_arr) {
     int new_size;
 
     new_size = clients_arr->size * 2;
@@ -82,9 +82,9 @@ void expand_clients_array(t_arr_clients *clients_arr) {
     }
 }
 
-t_arr_clients *h_clients_alloc() {
+t_clients_arr *h_clients_alloc() {
 
-    t_arr_clients *clients_arr = (t_arr_clients *) malloc(sizeof(t_arr_clients));
+    t_clients_arr *clients_arr = (t_clients_arr *) malloc(sizeof(t_clients_arr));
     if (clients_arr == NULL) {
         return NULL;
     }
@@ -105,7 +105,7 @@ t_arr_clients *h_clients_alloc() {
     return clients_arr;
 }
 
-void h_clients_free(t_arr_clients *clients_arr) {
+void h_clients_free(t_clients_arr *clients_arr) {
     for (int i = 0; i < clients_arr->size; i++) {
         free(clients_arr->clients[i].name);
         free(clients_arr->clients[i].country);
@@ -115,7 +115,7 @@ void h_clients_free(t_arr_clients *clients_arr) {
     free(clients_arr);
 }
 
-int h_clients_add(t_arr_clients *clients_arr) {
+int h_clients_add(t_clients_arr *clients_arr) {
 
     if (clients_arr == NULL) {
         return 0;
@@ -134,34 +134,65 @@ int h_clients_add(t_arr_clients *clients_arr) {
     return 1;
 }
 
-int h_clients_remove(t_arr_clients *clients_arr, int code) {
+void h_clients_remove(t_clients_arr *clients_arr, int code) {
+
+    if (is_empty(clients_arr)) {
+        return;
+    }
+
+
     for (int i = 0; i < clients_arr->count; ++i) {
         if (clients_arr->clients[i].code == code) {
             clients_arr->clients[i].removed = 1;
-            return 1;
+
+            printf("Removido com sucesso");
+            return;
         }
     }
 
-    return 0;
+    printf("Não foi removido!");
 }
 
-int h_clients_update(t_arr_clients *clients_arr, int code) {
+void h_clients_update(t_clients_arr *clients_arr, int code) {
+
+    if (is_empty(clients_arr)) {
+        return;
+    }
+
     for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].code == code) {
-            return read_client(clients_arr, i);
+
+            if (read_client(clients_arr, i)) {
+                printf("Atualizado com sucesso!");
+                return;
+            }
         }
     }
 
-    return 0;
+    printf("Não Atualizado!");
 }
 
-void h_clients_list(t_arr_clients *clients_arr) {
+void h_clients_list(t_clients_arr *clients_arr) {
+
+    if (is_empty(clients_arr)) {
+        return;
+    }
+
     for (int i = 0; i < clients_arr->count; ++i) {
         h_client_print(&clients_arr->clients[i]);
     }
 }
 
-void h_client_print(const t_client * client) {
+int is_empty(const t_clients_arr *clients_arr) {
+    if (clients_arr->count == 0) {
+        printf("Não existem clientes a listar!\n");
+        return 1;
+    }
+
+    return 0;
+}
+
+void h_client_print(const t_client *client) {
     printf("\n----\n");
     printf("Código de cliente: %d\n", client->code);
     printf("Nome do Cliente: %s\n", client->name);

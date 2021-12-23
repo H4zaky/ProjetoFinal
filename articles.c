@@ -5,9 +5,9 @@
 #include "articles.h"
 #include "utils.h"
 
-int find_article_code(t_arr_articles *articles_arr, int code);
+int find_article_code(t_articles_arr *articles_arr, int code);
 
-int read_article(t_arr_articles *articles_arr, int i) {
+int read_article(t_articles_arr *articles_arr, int i) {
     int code;
     int type;
     int max_size;
@@ -36,7 +36,7 @@ int read_article(t_arr_articles *articles_arr, int i) {
     return 1;
 }
 
-int find_article_code(t_arr_articles *articles_arr, int code) {
+int find_article_code(t_articles_arr *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
             return 1;
@@ -45,7 +45,7 @@ int find_article_code(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-void expand_articles_array(t_arr_articles *articles_arr) {
+void expand_articles_array(t_articles_arr *articles_arr) {
     int new_size;
 
     new_size = articles_arr->size * 2;
@@ -67,9 +67,9 @@ void expand_articles_array(t_arr_articles *articles_arr) {
     }
 }
 
-t_arr_articles *h_articles_alloc() {
+t_articles_arr *h_articles_alloc() {
 
-    t_arr_articles *articles_arr = (t_arr_articles *) malloc(sizeof(t_arr_articles));
+    t_articles_arr *articles_arr = (t_articles_arr *) malloc(sizeof(t_articles_arr));
     if (articles_arr == NULL) {
         return NULL;
     }
@@ -93,7 +93,7 @@ t_arr_articles *h_articles_alloc() {
     return articles_arr;
 }
 
-void h_articles_free(t_arr_articles *articles_arr) {
+void h_articles_free(t_articles_arr *articles_arr) {
     for (int i = 0; i < articles_arr->size; i++) {
         free(articles_arr->articles[i].name);
     }
@@ -102,7 +102,7 @@ void h_articles_free(t_arr_articles *articles_arr) {
     free(articles_arr);
 }
 
-int h_articles_add(t_arr_articles *articles_arr) {
+int h_articles_add(t_articles_arr *articles_arr) {
 
     if (articles_arr == NULL) {
         return 0;
@@ -121,7 +121,7 @@ int h_articles_add(t_arr_articles *articles_arr) {
     return 1;
 }
 
-int h_articles_remove(t_arr_articles *articles_arr, int code) {
+int h_articles_remove(t_articles_arr *articles_arr, int code) {
     int position = -1;
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
@@ -150,7 +150,7 @@ int h_articles_remove(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-int h_articles_update(t_arr_articles *articles_arr, int code) {
+int h_articles_update(t_articles_arr *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
             return read_article(articles_arr, i);
@@ -160,7 +160,7 @@ int h_articles_update(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-void h_articles_list(t_arr_articles *articles_arr) {
+void h_articles_list(t_articles_arr *articles_arr) {
     for (int i = 0; i < articles_arr->count; i++) {
         h_article_print(&articles_arr->articles[i]);
     }

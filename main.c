@@ -4,16 +4,18 @@
 #include "articles.h"
 #include "clients.h"
 #include "utils.h"
+#include "orders.h"
 
-void admin_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr);
+void admin_menu(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
 
-void client_menu();
+void client_menu(t_clients_arr *clients_arr, t_orders_arr *orders_arr, t_articles_arr *articles_arr);
 
-void profile_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr);
+void profile_menu(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
 
 int main() {
-    t_arr_clients *clients_arr = NULL;
-    t_arr_articles *articles_arr = NULL;
+    t_clients_arr *clients_arr = NULL;
+    t_articles_arr *articles_arr = NULL;
+    t_orders_arr *orders_arr = NULL;
 
     articles_arr = h_articles_alloc();
     if (articles_arr == NULL) {
@@ -29,15 +31,23 @@ int main() {
         return 1;
     }
 
-    profile_menu(clients_arr, articles_arr);
+    orders_arr = h_orders_alloc();
+    if (orders_arr == NULL) {
+        free(orders_arr);
+        perror("Orders Exited\n");
+        return 1;
+    }
+
+    profile_menu(clients_arr, articles_arr, orders_arr);
 
     h_clients_free(clients_arr);
     h_articles_free(articles_arr);
+    h_orders_free(orders_arr);
 
     return 0;
 }
 
-void profile_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
+void profile_menu(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr) {
     int profile;
 
     do {
@@ -47,14 +57,15 @@ void profile_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
         profile = h_utils_read_int(0, 2, INSERT_PROFILE_INPUT);
 
         if (profile == 1) {
-            admin_menu(clients_arr, articles_arr);
+            admin_menu(clients_arr, articles_arr, orders_arr);
         } else if (profile == 2) {
-            client_menu();
+            client_menu(clients_arr, orders_arr, articles_arr);
         }
+
     } while (profile != 0);
 }
 
-void admin_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
+void admin_menu(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr) {
     int op;
 
     do {
@@ -69,6 +80,8 @@ void admin_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
         printf("* 6.Editar Artigo                         *\n");
         printf("* 7.Remover Artigo                        *\n");
         printf("* 8.Listar Artigos                        *\n");
+        printf("* 9.Listar Encomendas                     *\n");
+        printf("* 10.Listar Encomendas Canceladas         *\n");
         printf("* 0.Sair                                  *\n");
         printf("*******************************************\n");
 
@@ -79,12 +92,10 @@ void admin_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
                 h_clients_add(clients_arr);
                 break;
             case 2:
-                printf(INSERT_CLIENT_CODE_INPUT"\n");
-                h_clients_update(clients_arr, h_utils_read_int(1, 9999, VALOR_INVALIDO));
+                h_clients_update(clients_arr, h_utils_read_int(1, 9999, INSERT_CLIENT_CODE_INPUT));
                 break;
             case 3:
-                printf(INSERT_CLIENT_CODE_INPUT"\n");
-                h_clients_remove(clients_arr, h_utils_read_int(1, 9999, VALOR_INVALIDO));
+                h_clients_remove(clients_arr, h_utils_read_int(1, 9999, INSERT_CLIENT_CODE_INPUT));
                 break;
             case 4:
                 h_clients_list(clients_arr);
@@ -93,52 +104,61 @@ void admin_menu(t_arr_clients *clients_arr, t_arr_articles *articles_arr) {
                 h_articles_add(articles_arr);
                 break;
             case 6:
-                printf(INSERT_ARTICLE_CODE_INPUT"\n");
-                h_articles_update(articles_arr, h_utils_read_int(1, 9999, VALOR_INVALIDO));
+                h_articles_update(articles_arr, h_utils_read_int(1, 9999, INSERT_ARTICLE_CODE_INPUT));
                 break;
             case 7:
-                printf(INSERT_ARTICLE_CODE_INPUT"\n");
-                h_articles_remove(articles_arr, h_utils_read_int(1, 9999, VALOR_INVALIDO));
+                h_articles_remove(articles_arr, h_utils_read_int(1, 9999, INSERT_ARTICLE_CODE_INPUT));
                 break;
             case 8:
                 h_articles_list(articles_arr);
                 break;
+            case 9:
+                h_orders_list_all(orders_arr);
+                break;
+            case 10:
+                h_orders_list_canceled(orders_arr);
             case 0:
                 printf("Exit\n");
         }
     } while (op != 0);
 }
 
-void client_menu() {
+void client_menu(t_clients_arr *clients_arr, t_orders_arr *orders_arr, t_articles_arr *articles_arr) {
     int op;
 
     do {
         printf("*******************************************\n");
         printf("*                   Menu                  *\n");
         printf("*                                         *\n");
-        printf("* 1.Criar Encomenda                       *\n");
-        printf("* 2.Editar Encomenda                      *\n");
-        printf("* 3.Remover Encomenda                     *\n");
-        printf("* 4.Listar Encomenda                      *\n");
+        printf("* 1.Criar Cliente                         *\n");
+        printf("* 2.Criar Encomenda                       *\n");
+        printf("* 3.Editar Encomenda                      *\n");
+        printf("* 4.Cancelar Encomenda                    *\n");
+        printf("* 5.Listar Encomenda                      *\n");
+        printf("* 6.Listar Artigos disponíveis            *\n");
         printf("* 0.Sair                                  *\n");
         printf("*******************************************\n");
 
-        op = h_utils_read_int(0, 4, INSERT_OPTION_INPUT);
-
-        // TODO Adicionar opção para listar artigos
+        op = h_utils_read_int(0, 7, INSERT_OPTION_INPUT);
 
         switch (op) {
             case 1:
-                printf("fff");
+                h_clients_add(clients_arr);
                 break;
             case 2:
-                printf("dddd");
+                h_orders_add(orders_arr, clients_arr);
                 break;
             case 3:
-                printf("kkkekk");
+                h_orders_update(orders_arr);
                 break;
             case 4:
-                printf("fkend dnj");
+                h_orders_cancel(orders_arr);
+                break;
+            case 5:
+                h_orders_list_mine(orders_arr);
+                break;
+            case 6:
+                h_articles_list(articles_arr);
                 break;
             case 0:
                 printf("Exit\n");
