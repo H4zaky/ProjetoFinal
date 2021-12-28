@@ -57,5 +57,48 @@
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
+#define H_STRS_ADMIN_REMOVE \
+"*******************************************\n" \
+"*               Opção Remover             *\n" \
+"*                                         *\n" \
+"* 1.Remover Cliente                       *\n" \
+"* 2.Remover Artigo                        *\n" \
+"* 0.Sair                                  *\n" \
+"*******************************************\n"
+
+#define H_STRS_ADMIN_LIST \
+"*******************************************\n" \
+"*               Opção Listar              *\n" \
+"*                                         *\n" \
+"* 1.Listar Cliente                        *\n" \
+"* 2.Listar Artigo                         *\n" \
+"* 3.Listar Todas as Encomendas            *\n" \
+"* 4.Listar Todas as Encomendas Canceladas *\n" \
+"* 0.Sair                                  *\n" \
+"*******************************************\n"
+
+#define H_STRS_ADMIN_DATABASE \
+"*******************************************\n" \
+"*          Persistência de Dados          *\n" \
+"*                                         *\n" \
+"* 1.Guardar Cliente                       *\n" \
+"* 2.Carregar Cliente                      *\n" \
+"* 3.Guardar Artigos                       *\n" \
+"* 4.Carregar Artigos                      *\n" \
+"* 5.Guardar Encomendas                    *\n" \
+"* 6.Carregar Encomendas                   *\n" \
+"* 0.Sair                                  *\n" \
+"*******************************************\n"
+
+#define H_STRS_CLIENT_ORDERS \
+"*******************************************\n" \
+"*               Encomenda                 *\n" \
+"*                                         *\n" \
+"* 1.Criar Encomenda                       *\n" \
+"* 2.Editar Encomenda                      *\n" \
+"* 3.Cancelar Encomenda                    *\n" \
+"* 4.Listar Encomenda                      *\n" \
+"* 0.Sair                                  *\n" \
+"*******************************************\n"
 
 #endif //PROJETOFINAL_STRS_H

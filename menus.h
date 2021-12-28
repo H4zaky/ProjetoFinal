@@ -8,9 +8,14 @@
 #ifndef PROJETOFINAL_MENUS_H
 #define PROJETOFINAL_MENUS_H
 
+#include "clients.h"
+#include "articles.h"
+#include "orders.h"
+#include "utils.h"
+
 void h_menus_profile();
 
-void h_menus_admin();
+void h_menus_admin(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
 
 void h_menus_client();
 
