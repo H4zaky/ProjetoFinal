@@ -5,12 +5,15 @@
 #include "articles.h"
 #include "utils.h"
 
-int find_article_code(t_arr_articles *articles_arr, int code);
+int find_article_code(t_articles_arr *articles_arr, int code);
 
-int read_article(t_arr_articles *articles_arr, int i) {
-    int code, footWearSize, laborWork, fixedCosts;
-    float footWearCosts;
-    // reuse memory
+int read_article(t_articles_arr *articles_arr, int i) {
+    int code;
+    int type;
+    int max_size;
+    int min_size;
+
+    //reuse memory
     char *name = articles_arr->articles[i].name;
 
     code = h_utils_read_int(0, 9999, CODE_INPUT_ARTICLE);
@@ -19,24 +22,21 @@ int read_article(t_arr_articles *articles_arr, int i) {
         return 0;
     }
 
-    footWearSize = h_utils_read_int(34, 48, FOOTWEAR_SIZE_INPUT);
-    footWearCosts = h_utils_read_float(0.65f, 1.35f, FOOTWEAR_COSTS_INPUT);
-    laborWork = h_utils_read_int(0, 10, LABOR_WORK_INPUT);
-    fixedCosts = h_utils_read_int(0, 10, FIXED_COSTS_INPUT);
-
-    h_utils_read_string(name, 64, NAME_INPUT_ARTICLE);
+    h_utils_read_string(name, 64, INSERT_ARTICLE_NAME_INPUT);
+    max_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MAX_SIZE_INPUT);
+    min_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MIN_SIZE_INPUT);
+    type = h_utils_read_int(0, 2, INSERT_ARTICLE_TYPE_INPUT);
 
     articles_arr->articles[i].code = code;
     articles_arr->articles[i].name = name;
-    articles_arr->articles[i].footWearSize = footWearSize;
-    articles_arr->articles[i].footWearCosts = footWearCosts;
-    articles_arr->articles[i].laborWork = laborWork;
-    articles_arr->articles[i].fixedCosts = fixedCosts;
+    articles_arr->articles[i].type = type;
+    articles_arr->articles[i].max_size = max_size;
+    articles_arr->articles[i].min_size = min_size;
 
     return 1;
 }
 
-int find_article_code(t_arr_articles *articles_arr, int code) {
+int find_article_code(t_articles_arr *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
             return 1;
@@ -45,15 +45,15 @@ int find_article_code(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-void expand_articles_array(t_arr_articles *articles_arr) {
+void expand_articles_array(t_articles_arr *articles_arr) {
     int new_size;
 
     new_size = articles_arr->size * 2;
 
     articles_arr->articles = (t_article *) realloc(articles_arr->articles, new_size * sizeof(t_article));
     if (articles_arr->articles == NULL) {
-        printf("Não alocou!");
-        exit(1);
+        perror("Not allocated");
+        exit(EXIT_FAILURE);
     }
 
     articles_arr->size = new_size;
@@ -61,18 +61,21 @@ void expand_articles_array(t_arr_articles *articles_arr) {
     for (int i = articles_arr->count; i < new_size; i++) {
         articles_arr->articles[i].name = (char *) calloc(64, sizeof(char));
         articles_arr->articles[i].code = 0;
+        articles_arr->articles[i].type = 0;
+        articles_arr->articles[i].max_size = 0;
+        articles_arr->articles[i].min_size = 0;
     }
 }
 
-t_arr_articles *h_articles_alloc() {
+t_articles_arr *h_articles_alloc() {
 
-    t_arr_articles *articles_arr = (t_arr_articles *) malloc(sizeof(t_arr_articles));
+    t_articles_arr *articles_arr = (t_articles_arr *) malloc(sizeof(t_articles_arr));
     if (articles_arr == NULL) {
         return NULL;
     }
 
     articles_arr->count = 0;
-    articles_arr->size = 1;
+    articles_arr->size = 20;
 
     articles_arr->articles = (t_article *) calloc(articles_arr->size, sizeof(t_article));
     if (articles_arr->articles == NULL) {
@@ -82,13 +85,15 @@ t_arr_articles *h_articles_alloc() {
     for (int i = 0; i < articles_arr->size; i++) {
         articles_arr->articles[i].name = (char *) calloc(64, sizeof(char));
         articles_arr->articles[i].code = 0;
-
+        articles_arr->articles[i].type = 0;
+        articles_arr->articles[i].max_size = 0;
+        articles_arr->articles[i].min_size = 0;
     }
 
     return articles_arr;
 }
 
-void h_articles_free(t_arr_articles *articles_arr) {
+void h_articles_free(t_articles_arr *articles_arr) {
     for (int i = 0; i < articles_arr->size; i++) {
         free(articles_arr->articles[i].name);
     }
@@ -97,7 +102,7 @@ void h_articles_free(t_arr_articles *articles_arr) {
     free(articles_arr);
 }
 
-int h_articles_add(t_arr_articles *articles_arr) {
+int h_articles_add(t_articles_arr *articles_arr) {
 
     if (articles_arr == NULL) {
         return 0;
@@ -116,7 +121,7 @@ int h_articles_add(t_arr_articles *articles_arr) {
     return 1;
 }
 
-int h_articles_remove(t_arr_articles *articles_arr, int code) {
+int h_articles_remove(t_articles_arr *articles_arr, int code) {
     int position = -1;
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
@@ -135,20 +140,18 @@ int h_articles_remove(t_arr_articles *articles_arr, int code) {
     free(articles_arr->articles[articles_arr->count - 1].name);
     articles_arr->articles[articles_arr->count - 1].name = (char *) calloc(64, sizeof(char));
     articles_arr->articles[articles_arr->count - 1].code = 0;
-    articles_arr->articles[articles_arr->count - 1].fixedCosts = 0;
-    articles_arr->articles[articles_arr->count - 1].footWearCosts = 0;
-    articles_arr->articles[articles_arr->count - 1].laborWork = 0;
     articles_arr->articles[articles_arr->count - 1].type = 0;
-    articles_arr->articles[articles_arr->count - 1].footWearSize = 0;
+    articles_arr->articles[articles_arr->count - 1].max_size = 0;
+    articles_arr->articles[articles_arr->count - 1].min_size = 0;
 
     articles_arr->count--;
 
-    printf(REMOVE_INPUT);
+    printf(REMOVE_ARTICLE_INPUT"\n");
     return 0;
 }
 
-int h_articles_update(t_arr_articles *articles_arr, int code) {
-    for (int i = 0; i < articles_arr->count; ++i) {
+int h_articles_update(t_articles_arr *articles_arr, int code) {
+    for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
             return read_article(articles_arr, i);
         }
@@ -157,17 +160,19 @@ int h_articles_update(t_arr_articles *articles_arr, int code) {
     return 0;
 }
 
-void h_articles_list(t_arr_articles *articles_arr) {
-    for (int i = 0; i < articles_arr->count; ++i) {
-        printf("\n----\n");
-        printf("Código de Artigo: %d\n", articles_arr->articles[i].code);
-        printf("Nome do Artigo: %s\n", articles_arr->articles[i].name);
-        printf("Custo Fixo: %d\n", articles_arr->articles[i].fixedCosts);
-        printf("Custo de Mão de Obra: %d\n", articles_arr->articles[i].laborWork);
-        printf("Preço do Sapato: %0.2f\n", articles_arr->articles[i].footWearCosts);
-        printf("Tamanho do Sapato: %d\n", articles_arr->articles[i].footWearSize);
-        printf("Tipo do Sapato: %c\n", articles_arr->articles[i].type);
-        printf("\n----\n");
+void h_articles_list(t_articles_arr *articles_arr) {
+    for (int i = 0; i < articles_arr->count; i++) {
+        h_article_print(&articles_arr->articles[i]);
     }
+}
+
+void h_article_print(const t_article *article) {
+    printf("\n----\n");
+    printf("Código de Artigo: %d\n", article->code);
+    printf("Nome do Artigo: %s\n", article->name);
+    printf("Tipo de calçado: %d\n", article->type);
+    printf("Tamanho mínimo do sapato %d\n", article->min_size);
+    printf("Tmanho máximo do sapato: %d\n", article->max_size);
+    printf("\n----\n");
 }
 

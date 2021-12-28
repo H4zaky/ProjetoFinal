@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "utils.h"
-#include "clients.h"
 
+#include "utils.h"
 
 void clean_input_buffer() {
     char ch;
@@ -18,7 +17,7 @@ char h_utils_read_char(char *msg) {
     return valor;
 }
 
-int h_utils_read_int(int minValor, int maxValor, char *msg) {
+int h_utils_read_int(int minValor, int maxValor, const char *msg) {
     int valor;
     printf("%s", msg);
     while (scanf("%d", &valor) != 1 || valor < minValor || valor > maxValor) {
