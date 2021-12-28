@@ -13,7 +13,7 @@
 
 char h_utils_read_char(char *msg);
 
-int h_utils_read_int(int minValor, int maxValor, char *msg);
+int h_utils_read_int(int minValor, int maxValor, const char *msg);
 
 float h_utils_read_float(float minValor, float maxValor, char *msg);
 
