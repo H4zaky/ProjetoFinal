@@ -44,14 +44,14 @@ void h_articles_free(t_articles_arr *articles_arr);
 int h_articles_add(t_articles_arr *articles_arr);
 
 /**
- *Encontra o artigo pelo código e remove-o.
+ *Procura o artigo pelo código e remove-o.
  * @param code código do artigo.
  * @return 1 se removido com sucesso, caso-contrário 0.
  */
 int h_articles_remove(t_articles_arr *articles_arr, int code);
 
 /**
- * Encontra o artigo pelo código e atualiza as informações do artigo.
+ * Procura o artigo pelo código e atualiza as informações do artigo.
  * @param code código do artigo.
  * @return 1 se atualizado com sucesso, caso-contrário 0.
  */
