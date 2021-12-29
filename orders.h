@@ -5,12 +5,7 @@
 #include "utils.h"
 #include "clients.h"
 
-#define INSERT_ORDER_CODE "Insira o código da encomenda:"
-#define INSERT_BILLING_ADDRESS_ORDER "Insira a morada de faturação:"
-#define INSERT_EXPEDITION_ADDRESS_ORDER "Insira a morada de envio:"
 
-#define REMOVE_ORDER_OUTPUT "Encomenda removida com sucesso!"
-#define CODE_INPUT_ORDER "Código da encomenda:"
 
 typedef struct {
     char *expedition_address;

@@ -1,16 +1,7 @@
 #ifndef PROJETOFINAL_ARTICLES_H
 #define PROJETOFINAL_ARTICLES_H
 
-#define CODE_INPUT_ARTICLE "Código do Artigo:"
-
-#define INSERT_ARTICLE_CODE_INPUT "Insira o código do artigo:"
-#define INSERT_ARTICLE_NAME_INPUT "Insira um nome para o artigo:"
-#define INSERT_ARTICLE_MAX_SIZE_INPUT "Insira o tamanho máximo:"
-#define INSERT_ARTICLE_MIN_SIZE_INPUT "Insira o tamanho mínimo:"
-#define INSERT_ARTICLE_TYPE_INPUT "Tipo de Sapato:"
-
-#define REMOVE_ARTICLE_INPUT "O artigo foi removido!"
-
+#include "utils.h"
 
 enum FOOTWEAR_TYPE {
     SAPATO = 0,

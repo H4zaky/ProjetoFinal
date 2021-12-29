@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include "articles.h"
-#include "utils.h"
 
 int find_article_code(t_articles_arr *articles_arr, int code);
 
@@ -22,10 +21,10 @@ int read_article(t_articles_arr *articles_arr, int i) {
         return 0;
     }
 
-    h_utils_read_string(name, 64, INSERT_ARTICLE_NAME_INPUT);
-    max_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MAX_SIZE_INPUT);
-    min_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MIN_SIZE_INPUT);
-    type = h_utils_read_int(0, 2, INSERT_ARTICLE_TYPE_INPUT);
+    h_utils_read_string(name, 64, INSERT_ARTICLE_NAME);
+    max_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MAX_SIZE);
+    min_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MIN_SIZE);
+    type = h_utils_read_int(0, 2, INSERT_ARTICLE_TYPE);
 
     articles_arr->articles[i].code = code;
     articles_arr->articles[i].name = name;
@@ -146,7 +145,7 @@ int h_articles_remove(t_articles_arr *articles_arr, int code) {
 
     articles_arr->count--;
 
-    printf(REMOVE_ARTICLE_INPUT"\n");
+    printf(ARTICLE_REMOVED_OUTPUT"\n");
     return 0;
 }
 

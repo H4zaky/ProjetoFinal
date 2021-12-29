@@ -4,10 +4,9 @@
 #include "clients.h"
 #include "orders.h"
 #include "articles.h"
+#include "utils.h"
 
-#define DATABASE_FILE "DATABASE.bin"
 
-#define FAILED_TO_WRITE "Failed to write"
 
 void h_database_write_clients(const t_clients_arr *clients_arr);
 

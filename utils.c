@@ -21,7 +21,7 @@ int h_utils_read_int(int minValor, int maxValor, const char *msg) {
     int valor;
     printf("%s", msg);
     while (scanf("%d", &valor) != 1 || valor < minValor || valor > maxValor) {
-        puts(VALOR_INVALIDO);
+        puts(INVALID_VALUE);
         clean_input_buffer();
         printf("%s", msg);
     }
@@ -33,7 +33,7 @@ float h_utils_read_float(float minValor, float maxValor, char *msg) {
     float valor;
     printf("%s", msg);
     while (scanf("%f", &valor) != 1 || valor < minValor || valor > maxValor) {
-        puts(VALOR_INVALIDO);
+        puts(INVALID_VALUE);
         clean_input_buffer();
         printf("%s", msg);
     }

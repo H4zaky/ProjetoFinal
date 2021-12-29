@@ -77,7 +77,7 @@ int h_orders_add(t_orders_arr *orders_arr, t_clients_arr *clients_arr) {
     int client_code;
     int order_code;
 
-    client_code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
+    client_code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE);
 
     if (h_clients_find_by_code(clients_arr, client_code) == 0) {
         printf("Cliente não existe\n");
@@ -151,7 +151,7 @@ void h_orders_list_mine(t_orders_arr *orders_arr) {
         return;
     }
 
-    int client_code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
+    int client_code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE);
 
     for (int i = 0; i < orders_arr->orders_count; i++) {
         if (orders_arr->orders[i].client_code == client_code) {

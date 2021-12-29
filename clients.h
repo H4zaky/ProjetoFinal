@@ -1,16 +1,7 @@
 #ifndef PROJETOFINAL_CLIENTS_H
 #define PROJETOFINAL_CLIENTS_H
 
-//Mensagens utilizadas para pedir a informação ao cliente.
-#define INSERT_CLIENT_CODE_INPUT "Insira o código do cliente:"
-#define INSERT_CLIENT_NAME_INPUT "Insira o nome do cliente:"
-#define INSERT_CLIENT_NIF_INPUT "Insira o nif do cliente:"
-#define INSERT_CLIENT_COUNTRY_INPUT "Insira o país do cliente:"
-
-//Mensagem de erro quando existe o mesmo número repetido.
-#define NIF_EXISTS "O número inserido para o nif já existe!"
-#define CODE_EXISTS "O número inserido para o código já existe!"
-
+#include "utils.h"
 
 typedef struct {
     int code;
