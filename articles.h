@@ -24,39 +24,43 @@ typedef struct {
 } t_articles_arr;
 
 /**
- *
+ *Função utilizada para imprimir toda a informação de um artigo.
  * @param article
  */
 void h_article_print(const t_article *article);
 
 /**
- * Alloc memory for an array of articles.
- * @return the array of articles.
+ * Aloca memória para um array de artigos.
+ * @return um array de artigos.
  */
 t_articles_arr *h_articles_alloc();
 
 void h_articles_free(t_articles_arr *articles_arr);
 
 /**
- * Add a new article to the array.
- * @return 1 if successful added, 0 otherwise.
+ * Adiciona um artigo ao array de artigos.
+ * @return 1 se adicionado com sucesso, caso-contrário 0.
  */
 int h_articles_add(t_articles_arr *articles_arr);
 
 /**
- * Finds a article by it's code and remove it.
- * @param code the code of the article.
- * @return 1 if found and remove, 0 otherwise.
+ *Encontra o artigo pelo código e remove-o.
+ * @param code código do artigo.
+ * @return 1 se removido com sucesso, caso-contrário 0.
  */
 int h_articles_remove(t_articles_arr *articles_arr, int code);
 
 /**
- * Finds and updates articles data.
- * @param code the code of the article.
- * @return 1 if found and successful updated, 0 otherwise.
+ * Encontra o artigo pelo código e atualiza as informações do artigo.
+ * @param code código do artigo.
+ * @return 1 se atualizado com sucesso, caso-contrário 0.
  */
 int h_articles_update(t_articles_arr *articles_arr, int code);
 
+/**
+ * Função utilizada para listar todos os artigos dentro do array.
+ * @param articles_arr
+ */
 void h_articles_list(t_articles_arr *articles_arr);
 
 #endif //PROJETOFINAL_ARTICLES_H

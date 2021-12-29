@@ -18,8 +18,8 @@ typedef struct {
 } t_clients_arr;
 
 /**
- * Alloc memory for an array of clients.
- * @return the array of clients.
+ * Aloca memória para um array de clientes.
+ * @return um array de clientes.
  */
 t_clients_arr *h_clients_alloc();
 
