@@ -33,9 +33,9 @@
 "*******************************************\n" \
 "*               Menu Cliente              *\n" \
 "*                                         *\n" \
-"* 1.Cliente                               *\n" \
+"* 1.Criar Clientes                        *\n" \
 "* 2.Encomenda                             *\n" \
-"* 3.Artigos                               *\n" \
+"* 3.Listar Artigos                        *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -43,8 +43,8 @@
 "*******************************************\n" \
 "*               Opção Criar               *\n" \
 "*                                         *\n" \
-"* 1.Criar Cliente                         *\n" \
-"* 2.Criar Artigo                          *\n" \
+"* 1.Criar Clientes                        *\n" \
+"* 2.Criar Artigos                         *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -53,7 +53,7 @@
 "*               Opção Editar              *\n" \
 "*                                         *\n" \
 "* 1.Editar Cliente                        *\n" \
-"* 2.Editar Artigo                         *\n" \
+"* 2.Editar Artigos                        *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -61,8 +61,8 @@
 "*******************************************\n" \
 "*               Opção Remover             *\n" \
 "*                                         *\n" \
-"* 1.Remover Cliente                       *\n" \
-"* 2.Remover Artigo                        *\n" \
+"* 1.Remover Clientes                      *\n" \
+"* 2.Remover Artigos                       *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -70,8 +70,8 @@
 "*******************************************\n" \
 "*               Opção Listar              *\n" \
 "*                                         *\n" \
-"* 1.Listar Cliente                        *\n" \
-"* 2.Listar Artigo                         *\n" \
+"* 1.Listar Clientes                       *\n" \
+"* 2.Listar Artigos                        *\n" \
 "* 3.Listar Todas as Encomendas            *\n" \
 "* 4.Listar Todas as Encomendas Canceladas *\n" \
 "* 0.Sair                                  *\n" \
@@ -81,8 +81,8 @@
 "*******************************************\n" \
 "*          Persistência de Dados          *\n" \
 "*                                         *\n" \
-"* 1.Guardar Cliente                       *\n" \
-"* 2.Carregar Cliente                      *\n" \
+"* 1.Guardar Clientes                      *\n" \
+"* 2.Carregar Clientes                     *\n" \
 "* 3.Guardar Artigos                       *\n" \
 "* 4.Carregar Artigos                      *\n" \
 "* 5.Guardar Encomendas                    *\n" \
@@ -94,10 +94,10 @@
 "*******************************************\n" \
 "*               Encomenda                 *\n" \
 "*                                         *\n" \
-"* 1.Criar Encomenda                       *\n" \
-"* 2.Editar Encomenda                      *\n" \
-"* 3.Cancelar Encomenda                    *\n" \
-"* 4.Listar Encomenda                      *\n" \
+"* 1.Criar Encomendas                      *\n" \
+"* 2.Editar Encomendas                     *\n" \
+"* 3.Cancelar Encomendas                   *\n" \
+"* 4.Listar Encomendas                     *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 

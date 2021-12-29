@@ -9,33 +9,26 @@ int find_nif(t_clients_arr *clients_arr, int nif);
 
 int is_empty(const t_clients_arr *clients_arr);
 
-int read_client(t_clients_arr *client_arr, int i) {
-    int code, nif;
+int read_client(t_clients_arr *clients_arr, int i) {
+    int nif;
 
     // reuse memory
-    char *name = client_arr->clients[i].name;
-    char *country = client_arr->clients[i].country;
+    char *name = clients_arr->clients[i].name;
+    char *country = clients_arr->clients[i].country;
 
-    code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
-    if (h_clients_find_by_code(client_arr, code)) {
-        printf(CODE_EXISTS);
-        return 0;
-    }
+    h_utils_read_string(name, 64, INSERT_CLIENT_NAME_INPUT"\n");
 
-    h_utils_read_string(name, 64, INSERT_CLIENT_NAME_INPUT);
-
-    nif = h_utils_read_int(99999999, 999999999, INSERT_CLIENT_NIF_INPUT);
-    if (find_nif(client_arr, nif)) {
-        printf(NIF_EXISTS);
+    nif = h_utils_read_int(99999999, 999999999, INSERT_CLIENT_NIF_INPUT"\n");
+    if (find_nif(clients_arr, nif)) {
+        printf(NIF_EXISTS"\n");
         return 0;
     }
 
     h_utils_read_string(country, 3, INSERT_CLIENT_COUNTRY_INPUT);
 
-    client_arr->clients[i].code = code;
-    client_arr->clients[i].name = name;
-    client_arr->clients[i].nif = nif;
-    client_arr->clients[i].country = country;
+    clients_arr->clients[i].name = name;
+    clients_arr->clients[i].nif = nif;
+    clients_arr->clients[i].country = country;
 
     return 1;
 }
@@ -116,6 +109,7 @@ void h_clients_free(t_clients_arr *clients_arr) {
 }
 
 int h_clients_add(t_clients_arr *clients_arr) {
+    int code;
 
     if (clients_arr == NULL) {
         return 0;
@@ -124,6 +118,15 @@ int h_clients_add(t_clients_arr *clients_arr) {
     if (clients_arr->count == clients_arr->size) {
         expand_clients_array(clients_arr);
     }
+
+    code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE_INPUT);
+    if (h_clients_find_by_code(clients_arr, code)) {
+        printf(CODE_EXISTS"\n");
+        return 0;
+    }
+
+    clients_arr->clients[clients_arr->count].code = code;
+
 
     if (read_client(clients_arr, clients_arr->count) != 1) {
         return 0;
@@ -145,12 +148,12 @@ void h_clients_remove(t_clients_arr *clients_arr, int code) {
         if (clients_arr->clients[i].code == code) {
             clients_arr->clients[i].removed = 1;
 
-            printf("Removido com sucesso");
+            printf("\nRemovido com sucesso\n");
             return;
         }
     }
 
-    printf("Não foi removido!");
+    printf("\nNão foi removido!\n");
 }
 
 void h_clients_update(t_clients_arr *clients_arr, int code) {
@@ -163,13 +166,13 @@ void h_clients_update(t_clients_arr *clients_arr, int code) {
         if (clients_arr->clients[i].code == code) {
 
             if (read_client(clients_arr, i)) {
-                printf("Atualizado com sucesso!");
+                printf("\nAtualizado com sucesso!\n");
                 return;
             }
         }
     }
 
-    printf("Não Atualizado!");
+    printf("\nNão Atualizado!\n");
 }
 
 void h_clients_list(t_clients_arr *clients_arr) {
@@ -185,7 +188,7 @@ void h_clients_list(t_clients_arr *clients_arr) {
 
 int is_empty(const t_clients_arr *clients_arr) {
     if (clients_arr->count == 0) {
-        printf("Não existem clientes a listar!\n");
+        printf("\nNão existem clientes a listar!\n");
         return 1;
     }
 
