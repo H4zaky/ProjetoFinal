@@ -2,7 +2,6 @@
 #define PROJETOFINAL_UTILS_H
 
 #define INSERT_PROFILE "Insira o tipo de utilizador:"
-#define DATABASE_FILE "DATABASE.bin"
 #define FAILED_TO_WRITE "Failed to write"
 
 //Mensagens utilizadas para avisar números repetidos.

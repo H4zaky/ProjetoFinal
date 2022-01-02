@@ -8,6 +8,10 @@
 #ifndef PROJETOFINAL_STRS_H
 #define PROJETOFINAL_STRS_H
 
+#define FAILED_TO_OPEN_DB_WB "[!] Não foi possível abrir a base de dados no modo 'wb'\n"
+#define DB_NOT_FOUND "[!] Base de dados não existe\n"
+#define SUCCESS_TO_READ "[!] Carregado em memoria com sucesso\n"
+
 #define H_STRS_PROFILE_MENU \
 "*********************************\n" \
 "* PROFILE MENU                  *\n" \
@@ -82,11 +86,8 @@
 "*          Persistência de Dados          *\n" \
 "*                                         *\n" \
 "* 1.Guardar Clientes                      *\n" \
-"* 2.Carregar Clientes                     *\n" \
-"* 3.Guardar Artigos                       *\n" \
-"* 4.Carregar Artigos                      *\n" \
-"* 5.Guardar Encomendas                    *\n" \
-"* 6.Carregar Encomendas                   *\n" \
+"* 2.Guardar Artigos                       *\n" \
+"* 3.Guardar Encomendas                    *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 

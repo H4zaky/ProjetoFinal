@@ -199,19 +199,10 @@ void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles
             h_database_write_clients(clients_arr);
             break;
         case 2:
-            h_database_read_clients();
-            break;
-        case 3:
             h_database_write_articles(articles_arr);
             break;
-        case 4:
-            h_database_read_articles();
-            break;
-        case 5:
+        case 3:
             h_database_write_orders(orders_arr);
-            break;
-        case 6:
-            h_database_read_orders();
             break;
         case 0:
             h_menus_admin(clients_arr, articles_arr, orders_arr);

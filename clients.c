@@ -83,7 +83,7 @@ t_clients_arr *h_clients_alloc() {
     }
 
     clients_arr->count = 0;
-    clients_arr->size = 1;
+    clients_arr->size = 20;
 
     clients_arr->clients = (t_client *) calloc(clients_arr->size, sizeof(t_client));
     if (clients_arr->clients == NULL) {
