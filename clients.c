@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include "clients.h"
-#include "utils.h"
 
 int find_nif(t_clients_arr *clients_arr, int nif);
 

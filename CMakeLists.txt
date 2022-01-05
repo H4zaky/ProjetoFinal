@@ -3,4 +3,7 @@ project(ProjetoFinal C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(ProjetoFinal main.c clients.c clients.h utils.c utils.h articles.c articles.h orders.c orders.h database.c database.h menus.c menus.h strs.h)
+add_executable(ProjetoFinal main.c clients.c clients.h utils.c utils.h articles.c articles.h orders.c orders.h menus.c menus.h strs.h costs.c costs.h)
+
+find_package(json-c CONFIG)
+target_link_libraries(${PROJECT_NAME} PRIVATE json-c::json-c)

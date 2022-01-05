@@ -12,7 +12,6 @@
 #include "articles.h"
 #include "orders.h"
 #include "utils.h"
-#include "database.h"
 
 void h_menus_profile(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
 

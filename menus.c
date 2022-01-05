@@ -196,13 +196,11 @@ void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles
 
     switch (op) {
         case 1:
-            h_database_write_clients(clients_arr);
             break;
         case 2:
-            h_database_write_articles(articles_arr);
+
             break;
         case 3:
-            h_database_write_orders(orders_arr);
             break;
         case 0:
             h_menus_admin(clients_arr, articles_arr, orders_arr);
