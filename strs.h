@@ -1,6 +1,6 @@
 /**
  * @file strs.h
- * @author
+ * @author Carlos Leite
  * @date
  * @brief Strings
  */

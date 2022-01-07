@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
 #include "articles.h"
 
 int find_article_code(t_articles_arr *articles_arr, int code);

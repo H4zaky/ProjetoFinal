@@ -1,8 +1,10 @@
 #include <stdio.h>
-#include <json.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include "costs.h"
 
-int read_costs(t_costs *costs, int i) {
+int collect_costs_info(t_costs *costs, int i) {
     float hand_work;
     float fixed_cost;
     int type;
@@ -119,10 +121,24 @@ void h_costs_free(t_costs *costs) {
 }
 
 int h_costs_add(t_costs *costs) {
-    if (costs == NULL) {
-        return 0;
+    int cost_code;
+
+    if (costs->global_costs->count == costs->global_costs->size &&
+    costs->fixed_costs->count == costs->fixed_costs->size) {
+        expand_costs_array(costs);
     }
 
+    collect_costs_info(costs, costs->global_costs->count);
+    collect_costs_info(costs, costs->fixed_costs->count);
 
-    return 0;
+    srand(time(NULL));
+    cost_code = rand() % 9999;
+
+    printf("Código do custo: %d", cost_code);
+
+    costs->cost_code = cost_code;
+
+
+
+    return 1;
 }

@@ -32,11 +32,12 @@ typedef struct {
 typedef struct {
     t_global_costs_arr *global_costs;
     t_fixed_costs_arr *fixed_costs;
+    int cost_code;
 } t_costs;
 
 int import_costs();
 
-int read_costs(t_costs *costs, int i);
+int collect_costs_info(t_costs *costs, int i);
 
 void expand_costs_array(t_costs *costs);
 

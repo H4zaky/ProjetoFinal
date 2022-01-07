@@ -35,6 +35,10 @@ void h_article_print(const t_article *article);
  */
 t_articles_arr *h_articles_alloc();
 
+/**
+ * Função para libertar a memória do array de artigos.
+ * @param articles_arr
+ */
 void h_articles_free(t_articles_arr *articles_arr);
 
 /**
@@ -58,7 +62,7 @@ int h_articles_remove(t_articles_arr *articles_arr, int code);
 int h_articles_update(t_articles_arr *articles_arr, int code);
 
 /**
- * Função utilizada para listar todos os artigos dentro do array.
+ * Itera o array de artigos.
  * @param articles_arr
  */
 void h_articles_list(t_articles_arr *articles_arr);

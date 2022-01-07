@@ -90,7 +90,7 @@ void h_menus_client(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_
     }
 }
 
-void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs) {
+void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr) {
     int op;
 
     op = h_menus_builder(H_STRS_ADMIN_CREATE, INSERT_OPTION, 0, 2);
@@ -103,7 +103,7 @@ void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_a
             h_articles_add(articles_arr);
             break;
         case 3:
-            h_costs_add(costs);
+            //h_costs_add();
             break;
         case 0:
             h_menus_admin(clients_arr, articles_arr, orders_arr);
@@ -113,7 +113,7 @@ void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_a
     }
 
     if (op != 0) {
-        h_menus_admin_create(clients_arr, articles_arr, orders_arr, costs);
+        h_menus_admin_create(clients_arr, articles_arr, orders_arr);
     }
 }
 
