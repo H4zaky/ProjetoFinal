@@ -40,6 +40,7 @@
 "* 1.Criar Clientes                        *\n" \
 "* 2.Encomenda                             *\n" \
 "* 3.Listar Artigos                        *\n" \
+"* 4.Listar Custos                         *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -49,6 +50,7 @@
 "*                                         *\n" \
 "* 1.Criar Clientes                        *\n" \
 "* 2.Criar Artigos                         *\n" \
+"* 3.Criar Custos                          *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -58,6 +60,7 @@
 "*                                         *\n" \
 "* 1.Editar Cliente                        *\n" \
 "* 2.Editar Artigos                        *\n" \
+"* 3.Editar Custos                         *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -67,6 +70,7 @@
 "*                                         *\n" \
 "* 1.Remover Clientes                      *\n" \
 "* 2.Remover Artigos                       *\n" \
+"* 3.Remover Custos                        *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -78,6 +82,7 @@
 "* 2.Listar Artigos                        *\n" \
 "* 3.Listar Todas as Encomendas            *\n" \
 "* 4.Listar Todas as Encomendas Canceladas *\n" \
+"* 5.Listar Custos                         *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 
@@ -88,6 +93,7 @@
 "* 1.Guardar Clientes                      *\n" \
 "* 2.Guardar Artigos                       *\n" \
 "* 3.Guardar Encomendas                    *\n" \
+"* 4.Guardar Custos                        *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 

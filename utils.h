@@ -32,6 +32,14 @@
 #define REMOVE_ORDER_OUTPUT "Encomenda removida com sucesso!"
 #define CODE_INPUT_ORDER "Código da encomenda:"
 
+//Mensagens utilizadas para os custos.
+#define INSERT_HAND_WORK_COST "Insira o custo da mão de obra:"
+#define INSERT_FIXED_COST_COST "Insira o custo do custo fixo:"
+#define INSERT_TYPE_SHOE "Insira o tipo de calçado:"
+#define INSERT_MARGIN_COST "Insira o custo da margem:"
+#define INSERT_FOOTWEAR_SIZE "Insira o tamnho do calçado:"
+#define INSERT_PRICE_SHOE "Insira o preço do sapato:"
+
 char h_utils_read_char(char *msg);
 
 int h_utils_read_int(int minValor, int maxValor, const char *msg);
