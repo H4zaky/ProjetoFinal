@@ -33,6 +33,7 @@
 #define CODE_INPUT_ORDER "Código da encomenda:"
 
 //Mensagens utilizadas para os custos.
+#define INSERT_COSTS_CODE "Insira o código do custo:"
 #define INSERT_HAND_WORK_COST "Insira o custo da mão de obra:"
 #define INSERT_FIXED_COST_COST "Insira o custo do custo fixo:"
 #define INSERT_TYPE_SHOE "Insira o tipo de calçado:"

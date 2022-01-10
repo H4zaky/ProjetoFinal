@@ -9,12 +9,14 @@ typedef struct {
     float hand_work;
     float fixed_cost;
     float margin;
+    int cost_code;
 } t_global_costs;
 
 typedef struct {
     enum FOOTWEAR_TYPE type;
     int footwear_size;
     float price;
+    int cost_code;
 } t_specific_costs;
 
 typedef struct {
@@ -32,12 +34,9 @@ typedef struct {
 typedef struct {
     t_global_costs_arr *global_costs;
     t_fixed_costs_arr *fixed_costs;
-    int cost_code;
 } t_costs;
 
-int import_costs();
-
-int collect_costs_info(t_costs *costs, int i);
+int collect_global_costs_info(t_costs *costs, int i);
 
 void expand_costs_array(t_costs *costs);
 
@@ -52,5 +51,15 @@ void h_costs_free(t_costs *costs);
  * @return
  */
 int h_costs_add(t_costs *costs);
+
+int h_costs_update(t_costs *costs, int cost_code);
+
+void h_costs_remove(t_costs *costs, int cost_code);
+
+void h_costs_list(t_costs *costs);
+
+void h_global_costs_print(t_global_costs *global_costs);
+
+void h_fixed_costs_print(t_specific_costs *specific_costs);
 
 #endif //PROJETOFINAL_COSTS_H

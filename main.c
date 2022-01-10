@@ -42,7 +42,7 @@ int menu() {
         return 1;
     }
 
-    h_menus_profile(clients_arr, articles_arr, orders_arr);
+    h_menus_profile(clients_arr, articles_arr, orders_arr, costs);
 
     h_clients_free(clients_arr);
     h_articles_free(articles_arr);

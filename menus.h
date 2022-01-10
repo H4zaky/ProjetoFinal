@@ -20,7 +20,7 @@
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_profile(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_profile(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades do admin.
@@ -28,7 +28,7 @@ void h_menus_profile(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades do cliente.
@@ -36,7 +36,7 @@ void h_menus_admin(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_o
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_client(t_clients_arr *clients_arr,  t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_client(t_clients_arr *clients_arr,  t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 // Admin specific menus
 /**
@@ -45,7 +45,7 @@ void h_menus_client(t_clients_arr *clients_arr,  t_articles_arr *articles_arr, t
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades de update do admin.
@@ -53,7 +53,7 @@ void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_a
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin_update(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin_update(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades de remover do admin.
@@ -61,7 +61,7 @@ void h_menus_admin_update(t_clients_arr *clients_arr, t_articles_arr *articles_a
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin_remove(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin_remove(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades de listar do admin
@@ -69,7 +69,7 @@ void h_menus_admin_remove(t_clients_arr *clients_arr, t_articles_arr *articles_a
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin_list(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin_list(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 /**
  * Menu com as funcionalidades de gravar/guardar informações.
@@ -77,7 +77,7 @@ void h_menus_admin_list(t_clients_arr *clients_arr, t_articles_arr *articles_arr
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 // Client specific menus
 /**
@@ -86,6 +86,6 @@ void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles
  * @param articles_arr
  * @param orders_arr
  */
-void h_menus_client_orders(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr);
+void h_menus_client_orders(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
 #endif //PROJETOFINAL_MENUS_H
