@@ -120,7 +120,7 @@ void h_menus_admin_create(t_clients_arr *clients_arr, t_articles_arr *articles_a
 void h_menus_admin_update(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *  costs) {
     int op;
 
-    op = h_menus_builder(H_STRS_ADMIN_UPDATE, INSERT_OPTION, 0, 2);
+    op = h_menus_builder(H_STRS_ADMIN_UPDATE, INSERT_OPTION, 0, 4);
 
     switch (op) {
         case 1:
