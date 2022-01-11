@@ -196,6 +196,7 @@ void h_costs_list(t_costs *costs) {
 }
 
 void h_global_costs_print(t_global_costs *global_costs) {
+    printf("Custos Globais:");
     printf("\n----\n");
     printf("Código do Custo: %d\n", global_costs->cost_code);
     printf("Custo de Mão de Obra: %f\n", global_costs->hand_work);
@@ -205,6 +206,7 @@ void h_global_costs_print(t_global_costs *global_costs) {
 }
 
 void h_fixed_costs_print(t_specific_costs *specific_costs) {
+    printf("Custos Fixos:");
     printf("\n----\n");
     printf("Código do Custo: %d\n", specific_costs->cost_code);
     printf("Tipo de Sapato: %d\n", specific_costs->type);

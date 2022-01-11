@@ -36,7 +36,7 @@
 #define INSERT_COSTS_CODE "Insira o código do custo:"
 #define INSERT_HAND_WORK_COST "Insira o custo da mão de obra:"
 #define INSERT_FIXED_COST_COST "Insira o custo do custo fixo:"
-#define INSERT_TYPE_SHOE "Insira o tipo de calçado:"
+#define INSERT_TYPE_SHOE "Insira o tipo de calçado (Sapato = 0, Sandalias = 1, Botas = 2):"
 #define INSERT_MARGIN_COST "Insira o custo da margem:"
 #define INSERT_FOOTWEAR_SIZE "Insira o tamnho do calçado:"
 #define INSERT_PRICE_SHOE "Insira o preço do sapato:"

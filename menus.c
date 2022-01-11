@@ -206,7 +206,7 @@ void h_menus_admin_list(t_clients_arr *clients_arr, t_articles_arr *articles_arr
 void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs) {
     int op;
 
-    op = h_menus_builder(H_STRS_ADMIN_DATABASE, INSERT_OPTION, 0, 6);
+    op = h_menus_builder(H_STRS_ADMIN_DATABASE, INSERT_OPTION, 0, 4);
 
     switch (op) {
         case 1:
