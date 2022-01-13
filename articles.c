@@ -19,8 +19,12 @@ int read_article(t_articles_arr *articles_arr, int i) {
     }
 
     h_utils_read_string(name, 64, INSERT_ARTICLE_NAME);
-    max_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MAX_SIZE);
-    min_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MIN_SIZE);
+
+    do {
+        min_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MIN_SIZE);
+        max_size = h_utils_read_int(11, 99, INSERT_ARTICLE_MAX_SIZE);
+    } while (max_size < min_size || min_size > max_size);
+
     type = h_utils_read_int(0, 2, INSERT_ARTICLE_TYPE);
 
     articles_arr->articles[i].code = code;
