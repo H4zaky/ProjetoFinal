@@ -4,6 +4,14 @@
 #include <bits/types/time_t.h>
 #include "utils.h"
 #include "clients.h"
+#include "articles.h"
+#include "costs.h"
+
+typedef struct {
+    int article_code;
+    int quantity;
+    float cost;
+} t_item;
 
 typedef struct {
     char *expedition_address;
@@ -12,13 +20,21 @@ typedef struct {
     int order_code;
     int client_code;
     int canceled;
+    t_item *items_arr;
+    int items_size;
+    int items_count;
 } t_order;
 
 typedef struct {
-    t_order* orders;
+    t_order *orders;
     int orders_count;
     int orders_size;
 } t_orders_arr;
+
+
+void expand_items_arr(t_order *order);
+
+void expand_orders_arr(t_orders_arr *orders_arr);
 
 /**
  * Alloca memória para o array de encomendas.
@@ -38,7 +54,7 @@ void h_orders_free(t_orders_arr *orders_arr);
  * @param clients_arr
  * @return 1 se adicionado com sucesso, caso-contrário 0.
  */
-int h_orders_add(t_orders_arr *orders_arr, t_clients_arr *clients_arr);
+int h_orders_add(t_orders_arr *orders_arr, t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_costs *costs);
 
 /**
  * Atualiza as informações da encomenda.

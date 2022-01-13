@@ -75,9 +75,6 @@ void h_menus_client(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_
         case 3:
             h_articles_list(articles_arr);
             break;
-        case 4:
-            h_costs_list(costs);
-            break;
         case 0:
             h_menus_profile(clients_arr, articles_arr, orders_arr, costs);
             break;
@@ -237,7 +234,19 @@ void h_menus_client_orders(t_clients_arr *clients_arr, t_articles_arr *articles_
 
     switch (op) {
         case 1:
-            h_orders_add(orders_arr, clients_arr);
+            if (clients_arr->count == 0) {
+                printf("Não existem clientes\n");
+                break;
+            }
+            if (articles_arr->count == 0) {
+                printf("Não existem artigos\n");
+                break;
+            }
+            if (costs->fixed_costs->count == 0 && costs->global_costs->count == 0) {
+                printf("Não existem custos\n");
+                break;
+            }
+            h_orders_add(orders_arr, clients_arr, articles_arr, costs);
             break;
         case 2:
             h_orders_update(orders_arr);

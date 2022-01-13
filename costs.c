@@ -10,6 +10,33 @@ int randomize_code() {
     return cost_code;
 }
 
+float h_calculate_shoe_cost(int shoe_type, int shoe_size, t_costs *costs) {
+    float total_global_costs = 0.0f;
+    float total_fixed_costs = 0.0f;
+
+    for (int i = 0; i < costs->global_costs->count; i++) {
+        if (shoe_type == costs->global_costs->global_costs_arr[i].type) {
+            total_global_costs += costs->global_costs->global_costs_arr[i].hand_work;
+            total_global_costs += costs->global_costs->global_costs_arr[i].fixed_cost;
+            total_global_costs += costs->global_costs->global_costs_arr[i].margin;
+            printf("Global costs: %f\n", total_global_costs);
+            break;
+        }
+    }
+
+    for (int i = 0; i < costs->fixed_costs->count; i++) {
+        if (shoe_size == costs->fixed_costs->fixed_costs_arr[i].footwear_size &&
+            shoe_type == costs->fixed_costs->fixed_costs_arr[i].type) {
+            total_fixed_costs += costs->fixed_costs->fixed_costs_arr[i].price;
+            printf("Fixed costs: %f\n", total_fixed_costs);
+            break;
+        }
+    }
+
+    return total_global_costs + total_fixed_costs;
+
+}
+
 int collect_global_costs_info(t_costs *costs, int i) {
     float hand_work;
     float fixed_cost;

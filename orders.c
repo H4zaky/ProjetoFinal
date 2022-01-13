@@ -1,7 +1,53 @@
 #include "orders.h"
+#include "costs.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
+void collect_item_info(t_order *order, t_articles_arr *articles_arr, t_costs *costs) {
+    int op;
+    int article_code;
+    int items_quantity;
+    int found = 0;
+    int shoe_size;
+    float item_cost;
+    t_article *article = NULL;
+
+    do {
+        op = h_utils_read_int(0, 1, INSERT_OPTION_BUY);
+        if (op == 1) {
+            if (order->items_count == order->items_size) {
+                expand_items_arr(order);
+            }
+
+            items_quantity = h_utils_read_int(1, 10, INSERT_QUANTITY_SIZE);
+
+            do {
+                article_code = h_utils_read_int(0, 9999, INSERT_ARTICLE_CODE);
+                if ((article = find_article_by_code(articles_arr, article_code)) == NULL) {
+                    printf("Artigo não existe!\n");
+                } else {
+                    found = 1;
+                    shoe_size = h_utils_read_int(article->min_size, article->max_size, INSERT_FOOTWEAR_SIZE);
+                    item_cost = h_calculate_shoe_cost(article->type, shoe_size, costs);
+                    printf("Cost Unit %f", item_cost);
+                }
+            } while (found == 0);
+
+            order->items_arr[order->items_count].article_code = article_code;
+            order->items_arr[order->items_count].quantity = items_quantity;
+            order->items_arr[order->items_count].cost = item_cost * (float) items_quantity;
+            order->order_value += order->items_arr[order->items_count].cost;
+
+            printf("Numero de artigos: %d\n", items_quantity);
+            printf("Custo total do artigo: %0.1f\n", order->items_arr[order->items_count].cost);
+
+            order->items_count++;
+        }
+    } while (op != 0);
+
+    printf("Custo total da encomenda: %f\n", order->order_value);
+}
 
 void collect_order_info(t_orders_arr *orders_arr, int i) {
     // reuse memory
@@ -15,25 +61,45 @@ void collect_order_info(t_orders_arr *orders_arr, int i) {
     orders_arr->orders[i].expedition_address = expedition_address;
 }
 
-void expand_orders_array(t_orders_arr *orders_arr) {
-    int new_size;
+void expand_items_arr(t_order *order) {
 
-    new_size = orders_arr->orders_size * 2;
+    order->items_size *= 2;
 
-    orders_arr->orders = (t_order *) realloc(orders_arr->orders, new_size * sizeof(t_order));
-    if (orders_arr->orders == NULL) {
-        perror("Not allocated");
+    order->items_arr = (t_item *) realloc(order->items_arr,
+                                         order->items_size * sizeof(t_item));
+
+    if (order->items_arr == NULL) {
+        perror("Not allocated\n");
         exit(EXIT_FAILURE);
     }
 
-    orders_arr->orders_size = new_size;
+    for (int j = order->items_count; j < order->items_size; j++) {
+        order->items_arr[j].cost = 0.0f;
+        order->items_arr[j].quantity = 0;
+        order->items_arr[j].article_code = 0;
+    }
+}
 
-    for (int i = orders_arr->orders_count; i < new_size; i++) {
+void expand_orders_arr(t_orders_arr *orders_arr) {
+    int new_order_size;
+
+    new_order_size = orders_arr->orders_size * 2;
+
+    orders_arr->orders = (t_order *) realloc(orders_arr->orders, new_order_size * sizeof(t_order));
+    if (orders_arr->orders == NULL) {
+        perror("Not allocated\n");
+        exit(EXIT_FAILURE);
+    }
+
+    orders_arr->orders_size = new_order_size;
+
+    for (int i = orders_arr->orders_count; i < new_order_size; i++) {
         orders_arr->orders[i].billing_address = (char *) calloc(64, sizeof(char));
         orders_arr->orders[i].expedition_address = (char *) calloc(64, sizeof(char));
         orders_arr->orders[i].order_code = 0;
         orders_arr->orders[i].order_value = 0.0f;
     }
+
 }
 
 t_orders_arr *h_orders_alloc() {
@@ -53,11 +119,27 @@ t_orders_arr *h_orders_alloc() {
 
     for (int i = 0; i < orders_arr->orders_size; i++) {
         orders_arr->orders[i].billing_address = (char *) calloc(64, sizeof(char));
+        if (orders_arr->orders[i].billing_address == NULL) {
+            return NULL;
+        }
+
         orders_arr->orders[i].expedition_address = (char *) calloc(64, sizeof(char));
+        if (orders_arr->orders[i].expedition_address == NULL) {
+            return NULL;
+        }
+
         orders_arr->orders[i].client_code = 0;
         orders_arr->orders[i].order_code = 0;
         orders_arr->orders[i].order_value = 0.0f;
         orders_arr->orders[i].canceled = 0;
+
+        orders_arr->orders[i].items_count = 0;
+        orders_arr->orders[i].items_size = 10;
+        orders_arr->orders[i].items_arr = (t_item *) calloc(orders_arr->orders[i].items_size,
+                                                            sizeof(t_item));
+        if (orders_arr->orders[i].items_arr == NULL) {
+            return NULL;
+        }
     }
 
     return orders_arr;
@@ -73,22 +155,24 @@ void h_orders_free(t_orders_arr *orders_arr) {
     free(orders_arr);
 }
 
-int h_orders_add(t_orders_arr *orders_arr, t_clients_arr *clients_arr) {
+int h_orders_add(t_orders_arr *orders_arr, t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_costs *costs) {
     int client_code;
     int order_code;
 
     client_code = h_utils_read_int(0, 9999, INSERT_CLIENT_CODE);
-
     if (h_clients_find_by_code(clients_arr, client_code) == 0) {
         printf("Cliente não existe\n");
         return 0;
     }
 
     if (orders_arr->orders_count == orders_arr->orders_size) {
-        expand_orders_array(orders_arr);
+        expand_orders_arr(orders_arr);
     }
 
     collect_order_info(orders_arr, orders_arr->orders_count);
+    collect_item_info(&orders_arr->orders[orders_arr->orders_count],
+                      articles_arr,
+                      costs);
 
     srand(time(NULL));
     order_code = rand() % 9999;

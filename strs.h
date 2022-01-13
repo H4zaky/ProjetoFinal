@@ -40,7 +40,6 @@
 "* 1.Criar Clientes                        *\n" \
 "* 2.Encomenda                             *\n" \
 "* 3.Listar Artigos                        *\n" \
-"* 4.Listar Custos                         *\n" \
 "* 0.Sair                                  *\n" \
 "*******************************************\n"
 

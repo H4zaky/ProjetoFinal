@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "articles.h"
 
-int find_article_code(t_articles_arr *articles_arr, int code);
-
 int read_article(t_articles_arr *articles_arr, int i) {
     int code;
     int type;
@@ -15,7 +13,7 @@ int read_article(t_articles_arr *articles_arr, int i) {
     char *name = articles_arr->articles[i].name;
 
     code = h_utils_read_int(0, 9999, CODE_INPUT_ARTICLE);
-    if (find_article_code(articles_arr, code)) {
+    if (find_article_by_code(articles_arr, code)) {
         printf(CODE_EXISTS);
         return 0;
     }
@@ -34,13 +32,13 @@ int read_article(t_articles_arr *articles_arr, int i) {
     return 1;
 }
 
-int find_article_code(t_articles_arr *articles_arr, int code) {
+t_article* find_article_by_code(t_articles_arr *articles_arr, int code) {
     for (int i = 0; i < articles_arr->count; i++) {
         if (articles_arr->articles[i].code == code) {
-            return 1;
+            return &articles_arr->articles[i];
         }
     }
-    return 0;
+    return NULL;
 }
 
 void expand_articles_array(t_articles_arr *articles_arr) {
@@ -50,7 +48,7 @@ void expand_articles_array(t_articles_arr *articles_arr) {
 
     articles_arr->articles = (t_article *) realloc(articles_arr->articles, new_size * sizeof(t_article));
     if (articles_arr->articles == NULL) {
-        perror("Not allocated");
+        perror("Not allocated\n");
         exit(EXIT_FAILURE);
     }
 
@@ -101,6 +99,7 @@ void h_articles_free(t_articles_arr *articles_arr) {
 }
 
 int h_articles_add(t_articles_arr *articles_arr) {
+    int article_code;
 
     if (articles_arr == NULL) {
         return 0;

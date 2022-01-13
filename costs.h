@@ -36,6 +36,8 @@ typedef struct {
     t_fixed_costs_arr *fixed_costs;
 } t_costs;
 
+float h_calculate_shoe_cost(int shoe_type, int shoe_size, t_costs *costs);
+
 int collect_global_costs_info(t_costs *costs, int i);
 
 void expand_costs_array(t_costs *costs);

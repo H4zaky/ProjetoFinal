@@ -31,6 +31,8 @@
 #define INSERT_EXPEDITION_ADDRESS_ORDER "Insira a morada de envio:"
 #define REMOVE_ORDER_OUTPUT "Encomenda removida com sucesso!"
 #define CODE_INPUT_ORDER "Código da encomenda:"
+#define INSERT_QUANTITY_SIZE "Insira o quantidade do artigo: "
+#define INSERT_OPTION_BUY "Deseja inserir um artigo? "
 
 //Mensagens utilizadas para os custos.
 #define INSERT_COSTS_CODE "Insira o código do custo:"

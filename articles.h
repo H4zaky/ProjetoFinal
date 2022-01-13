@@ -42,6 +42,14 @@ t_articles_arr *h_articles_alloc();
 void h_articles_free(t_articles_arr *articles_arr);
 
 /**
+ *
+ * @param articles_arr
+ * @param code
+ * @return
+ */
+t_article* find_article_by_code(t_articles_arr *articles_arr, int code);
+
+/**
  * Adiciona um artigo ao array de artigos.
  * @return 1 se adicionado com sucesso, caso-contrário 0.
  */

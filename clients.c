@@ -39,6 +39,7 @@ int h_clients_find_by_code(t_clients_arr *clients_arr, int code) {
             return 1;
         }
     }
+
     return 0;
 }
 
@@ -143,7 +144,7 @@ void h_clients_remove(t_clients_arr *clients_arr, int code) {
     }
 
 
-    for (int i = 0; i < clients_arr->count; ++i) {
+    for (int i = 0; i < clients_arr->count; i++) {
         if (clients_arr->clients[i].code == code) {
             clients_arr->clients[i].removed = 1;
 
@@ -180,7 +181,7 @@ void h_clients_list(t_clients_arr *clients_arr) {
         return;
     }
 
-    for (int i = 0; i < clients_arr->count; ++i) {
+    for (int i = 0; i < clients_arr->count; i++) {
         h_client_print(&clients_arr->clients[i]);
     }
 }

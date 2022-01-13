@@ -25,8 +25,6 @@ int menu() {
         perror("Clients Exited\n");
         return 1;
     }
-    printf("%d", clients_arr->count);
-    printf("%d", clients_arr->size);
 
     orders_arr = (t_orders_arr *) h_orders_alloc(orders_arr);
     if (orders_arr == NULL) {
