@@ -64,6 +64,9 @@ void h_clients_remove(t_clients_arr *clients_arr, int code);
  */
 void h_clients_update(t_clients_arr *clients_arr, int code);
 
+
+
+void h_clients_list_canceled(t_clients_arr *clients_arr);
 /**
  * Itera o array de clientes.
  * @param clients_arr

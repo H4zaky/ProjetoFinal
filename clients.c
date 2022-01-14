@@ -186,6 +186,21 @@ void h_clients_list(t_clients_arr *clients_arr) {
     }
 }
 
+void h_clients_list_canceled(t_clients_arr *clients_arr) {
+
+    if (clients_arr->count == 0) {
+        printf("Vazio\n");
+        return;
+    }
+
+    for (int i = 0; i < clients_arr->count; i++) {
+        if (clients_arr->clients[i].removed == 1) {
+            h_client_print(&clients_arr->clients[i]);
+        }
+    }
+}
+
+
 int is_empty(const t_clients_arr *clients_arr) {
     if (clients_arr->count == 0) {
         printf("\nNão existem clientes a listar!\n");
