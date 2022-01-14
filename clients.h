@@ -1,6 +1,6 @@
 /**
  * @file clients.h
- * @author Carlos Leite
+ * @author Carlos Leite, Pedro Teixeira, Eunice Abreu
  * @date 20/12/2021
  * @brief Clients
  */

@@ -1,6 +1,6 @@
 /**
  * @file utils.h
- * @author Carlos Leite
+ * @author Carlos Leite, Pedro Teixeira, Eunice Abreu
  * @date 07/01/2022
  * @brief Utils
  */

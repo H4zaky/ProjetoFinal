@@ -1,6 +1,6 @@
 /**
  * @file articles.h
- * @author Carlos Leite
+ * @author Carlos Leite, Pedro Teixeira, Eunice Abreu
  * @date 24/12/2021
  * @brief Articles
  */

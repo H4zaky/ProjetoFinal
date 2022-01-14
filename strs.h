@@ -1,6 +1,6 @@
 /**
  * @file strs.h
- * @author Carlos Leite
+ * @author Carlos Leite, Pedro Teixeira, Eunice Abreu
  * @date 03/01/2022
  * @brief Strings
  */
