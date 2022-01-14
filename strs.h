@@ -1,7 +1,7 @@
 /**
  * @file strs.h
  * @author Carlos Leite
- * @date
+ * @date 03/01/2022
  * @brief Strings
  */
 

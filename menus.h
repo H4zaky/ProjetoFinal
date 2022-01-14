@@ -71,14 +71,6 @@ void h_menus_admin_remove(t_clients_arr *clients_arr, t_articles_arr *articles_a
  */
 void h_menus_admin_list(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
 
-/**
- * Menu com as funcionalidades de gravar/guardar informações.
- * @param clients_arr
- * @param articles_arr
- * @param orders_arr
- */
-void h_menus_admin_database(t_clients_arr *clients_arr, t_articles_arr *articles_arr, t_orders_arr *orders_arr, t_costs *costs);
-
 // Client specific menus
 /**
  * Menu com as as funcionalidades sobre as encomendas do cliente.

@@ -1,3 +1,10 @@
+/**
+ * @file clients.h
+ * @author Carlos Leite
+ * @date 20/12/2021
+ * @brief Clients
+ */
+
 #ifndef PROJETOFINAL_CLIENTS_H
 #define PROJETOFINAL_CLIENTS_H
 
@@ -64,8 +71,10 @@ void h_clients_remove(t_clients_arr *clients_arr, int code);
  */
 void h_clients_update(t_clients_arr *clients_arr, int code);
 
-
-
+/**
+ * Lista todos os clientes que estão marcados como removidos.
+ * @param clients_arr
+ */
 void h_clients_list_canceled(t_clients_arr *clients_arr);
 /**
  * Itera o array de clientes.

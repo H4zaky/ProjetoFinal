@@ -1,3 +1,10 @@
+/**
+ * @file articles.h
+ * @author Carlos Leite
+ * @date 24/12/2021
+ * @brief Articles
+ */
+
 #ifndef PROJETOFINAL_ARTICLES_H
 #define PROJETOFINAL_ARTICLES_H
 

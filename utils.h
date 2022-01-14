@@ -1,8 +1,15 @@
+/**
+ * @file utils.h
+ * @author Carlos Leite
+ * @date 07/01/2022
+ * @brief Utils
+ */
+
 #ifndef PROJETOFINAL_UTILS_H
 #define PROJETOFINAL_UTILS_H
 
+//Mensagem para inserir o tipo de utilizador.
 #define INSERT_PROFILE "Insira o tipo de utilizador:"
-#define FAILED_TO_WRITE "Failed to write"
 
 //Mensagens utilizadas para avisar números repetidos.
 #define INVALID_VALUE "O valor inserido é inválido."
@@ -29,8 +36,6 @@
 #define INSERT_ORDER_CODE "Insira o código da encomenda:"
 #define INSERT_BILLING_ADDRESS_ORDER "Insira a morada de faturação:"
 #define INSERT_EXPEDITION_ADDRESS_ORDER "Insira a morada de envio:"
-#define REMOVE_ORDER_OUTPUT "Encomenda removida com sucesso!"
-#define CODE_INPUT_ORDER "Código da encomenda:"
 #define INSERT_QUANTITY_SIZE "Insira o quantidade do artigo: "
 #define INSERT_OPTION_BUY "Deseja inserir um artigo? "
 
@@ -40,15 +45,40 @@
 #define INSERT_FIXED_COST_COST "Insira o custo do custo fixo:"
 #define INSERT_TYPE_SHOE "Insira o tipo de calçado (Sapato = 0, Sandalias = 1, Botas = 2):"
 #define INSERT_MARGIN_COST "Insira o custo da margem:"
-#define INSERT_FOOTWEAR_SIZE "Insira o tamnho do calçado:"
+#define INSERT_FOOTWEAR_SIZE "Insira o tamanho do calçado:"
 #define INSERT_PRICE_SHOE "Insira o preço do sapato:"
 
+/**
+ * Função utilizada para ler caracteres.
+ * @param msg
+ * @return o caracter.
+ */
 char h_utils_read_char(char *msg);
 
+/**
+ * Função utilizada para ler inteiros.
+ * @param minValor
+ * @param maxValor
+ * @param msg
+ * @return o valor inteiro.
+ */
 int h_utils_read_int(int minValor, int maxValor, const char *msg);
 
+/**
+ * Função utilizada para ler float.
+ * @param minValor
+ * @param maxValor
+ * @param msg
+ * @return o valor em float
+ */
 float h_utils_read_float(float minValor, float maxValor, char *msg);
 
+/**
+ * Função utilizada para ler um array de caracteres.
+ * @param string
+ * @param tamanho
+ * @param msg
+ */
 void h_utils_read_string(char *string, int tamanho, char *msg);
 
 #endif //PROJETOFINAL_UTILS_H
